@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "name": "Mark James",
+      "age": 45,
+      "weight": 123,
+      "id": 1
+    }, 
+    {
+      "name": "Jacob James",
+      "age": 19,
+      "weight": 115,
+      "id": 2
+    }, 
+    {
+      "name": "James James",
+      "age": 34,
+      "weight": 170,
+      "id": 3
+    }, 
+    {
+      "name": "Jeanie Jacobs",
+      "age": 45,
+      "weight": 180,
+      "id": 4
+    },
+    {
+      "name": "Evan Evanson",
+      "age": 23,
+      "weight": 145,
+      "id": 5
+    }
+  
+  ]
+}
+  

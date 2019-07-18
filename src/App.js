@@ -1,108 +1,81 @@
-import React, { useState } from 'react';
+import React, { setState } from 'react';
 import './App.css';
 
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formValue : 'change me',
+      exercises: [
+        "pushups",
+        "situps",
+        "benchpress"
+      ],
+      selectValue: 'exercises'
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
+    this.handleAddSelect = this.handleAddSelect.bind(this);
+  }
+ 
 
-const Exercise = ({ name, region, weight, weightUnits, reps, date }) => {
-  return (
-    <div>
-      <h2>{name}</h2>
-      <h3>{region}</h3>
-      <p>{weight}{weightUnits} x {reps}</p>
-    </div>
-  )
-}
-
-const App = (props) => {
-  const [formExerciseName, setFormExerciseName] = useState('name');
-  const [formRegion, setFormRegion] = useState('(select)');
-  const [formReps, setFormReps] = useState(0);
-  const [formWeight, setFormWeight] = useState(0);
-  const [formWeightUnits, setFormWEightUnits] = useState('kg');
-  const [exercises, setExercises] = useState([
-    { region: 'Back', name: 'Deadlift', weight: 100, weightUnits: 'kg', reps: 10, date: ''},
-    { region: 'Legs', name: 'Deadlift', weight: 100, weightUnits: 'kg', reps: 10, date: ''},
-    { region: 'Back', name: 'Deadlift', weight: 10, weightUnits: 'kg', reps: 100, date: ''},
-    { region: 'Legs', name: 'Deadlift', weight: 120, weightUnits: 'kg', reps: 8, date: ''},
-    { region: 'Back', name: 'Deadlift', weight: 100, weightUnits: 'kg', reps: 10, date: ''},
-  ]);
-
-  
-  const displayExercises = () => exercises.map((exercise, i) => 
-    <Exercise key={i} name={exercise.name}
-      region={exercise.region} 
-      weight={exercise.weight}
-      weightUnits={exercise.weightUnits}
-      reps={exercise.reps}
-      date={exercise.date} />
-  )
-
-
-  const handleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    const exerciseToAdd = {
-      name: formExerciseName,
-      region: formRegion,
-      weight: formWeight,
-      weightUnits: formWeightUnits,
-      reps: formReps,
-      date: new Date()
-    }
-
-    setExercises(exercises.concat(exerciseToAdd));
-
-    setFormExerciseName('');
-    setFormRegion('(select)');
   }
 
-
-
-  const formNameHandler = (event) => {
-    setFormExerciseName(event.target.value);
+  handleInput = (event) => {
+    this.setState({
+      formValue: event.target.value
+    })
   }
 
-  const regionHandler = (event) => {
-    setFormRegion(event.target.value);
+  handleValueChange = (event) => {
+    setState({
+      selectValue: event.target.value
+    })
   }
 
-  const formRepsHandler = (event) => {
-    setFormReps(event.target.value);
+  handleAddSelect = (event) => {
+    event.preventDefault();
+
+    console.log('handling add to select')
+    this.setState({
+      exercises: this.state.exercises.concat(this.state.formValue),
+      formValue: ''
+    })
   }
 
-  const formWeightHandler = (event) => {
-    setFormWeight(event.target.value);
+  mapExercises = (exercises) => {
+    console.log('mapping exercises');
+    let pArr = exercises.map((e, i) => {
+      return <option value={e} key={i}>{e}</option>
+    })
+
+    console.log(pArr);
+    return pArr;
+    
   }
 
-  const formWeightUnitsHandler = (event) => {
-    setFormWEightUnits(event.target.value);
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit} >
+          <select value={this.state.selectValue} onChange={this.handleValueChange}>
+            {this.mapExercises(this.state.exercises)}
+          </select>
+        </form>
+        <form onSubmit={this.handleAddSelect} >
+          <input type="text" value={this.state.formValue} onChange={this.handleInput} />
+          <input type="submit" value="submit" />
+        </form>
+
+      </div>
+      
+    )
   }
-
-  return(
-    <div id="App">
-      <h1>Gym App</h1>
-      <form onSubmit={handleSubmit}>
-        
-        <select required name={formRegion} value={formRegion} onChange={regionHandler}>
-          <option value='back'>Back</option>
-          <option value='legs'>Legs</option>
-          <option value='chest'>Chest</option>
-        </select>
-        <input id="form-name" value={formExerciseName} onChange={formNameHandler} />
-        <input id="form-reps" value={formReps} onChange={formRepsHandler} />
-        <input id="form-weight" value={formWeight} onChange={formWeightHandler} />
-        <select required name={formWeightUnits} onChange={formWeightUnitsHandler}>
-          <option value='kg'>kg</option>
-          <option value='lb'>lb</option>
-        </select>
-        <div>
-          <button type="submit">Add</button>
-        </div>
-      </form>
-
-      <h2>Previous Exercises</h2>
-      <div>{displayExercises()}</div>
-    </div>
-  )
 }
+
 
 export default App;
