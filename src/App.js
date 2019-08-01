@@ -3,9 +3,6 @@ import './App.css'
 import Exercises from './Exercises'
 
 const App = () => {
-
-
-
   return (
     <div className="App">
       <Exercises />
