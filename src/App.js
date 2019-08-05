@@ -5,16 +5,15 @@ import Exercises from './Exercises'
 import exerciseService from './services/exerciseService'
 
 const App = () => {
-  /* for Search/Filter component */
-  const [filterTerm, setFilterTerm] = useState('')
-  const [filterTypes, setFilterTypes] = useState({
+  const defaultFilterTypes = {
     "name": true,
     "category": true
-  })
-
-  /* for Exercise component */
+  }
+  const [filterTerm, setFilterTerm] = useState('')
+  const [filterTypes, setFilterTypes] = useState(defaultFilterTypes)
   const [exerciseList, setExerciseList] = useState([])
 
+  /* Retreive list of exercises from server */
   useEffect(() => {
     exerciseService
       .getExercises()

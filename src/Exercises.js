@@ -12,15 +12,10 @@ const Exercises = ({ filterBy, filterTerm, exerciseList }) => {
 
   const filterExercisesByCategory = (exerciseArray) => {
     return exerciseArray.filter(exercise => {
-      let categories = exercise.category
-      let filteredCategories = categories.filter(category => {
+      let filteredCategories = exercise.category.filter(category => {
         return category.toLowerCase().includes(filterIgnoreCase)
       })
-      if (filteredCategories.length > 0) { 
-        return true 
-      } else {
-        return false 
-      }
+      if (filteredCategories.length > 0) { return true } else { return false }
     })
   }
   
