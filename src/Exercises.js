@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Exercise from './Exercise'
 
-const [exerciseList, setExerciseList] = useState([])
-
-const Exercises = (props) => {
+const Exercises = ({ exerciseList }) => {
+  const displayExerciseList = (exerciseList) => {
+    return exerciseList.map((exercise) => {
+      return <Exercise key={exercise.name} name={exercise.name} category={exercise.category} />
+    })
+  }
 
   return (
-    <div className="Exercises">
-
+    <div id="Exercises">
+      {displayExerciseList(exerciseList)}
     </div>
   )
 }
