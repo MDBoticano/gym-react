@@ -1,7 +1,7 @@
 import React from 'react'
 import Exercise from './Exercise'
 
-const Exercises = ({ filterBy, filterTerm, exerciseList }) => {
+const Exercises = ({ filterBy, filterTerm, exerciseList, chipSetsFilter }) => {
   const filterIgnoreCase = filterTerm.toLowerCase();
 
   const filterExercisesByName = (exerciseArray) => {
@@ -37,7 +37,8 @@ const Exercises = ({ filterBy, filterTerm, exerciseList }) => {
         <Exercise 
           key={exercise.name} 
           name={exercise.name} 
-          category={exercise.category} 
+          category={exercise.category}
+          chipSetsFilter={chipSetsFilter} 
         />)
     })
   }

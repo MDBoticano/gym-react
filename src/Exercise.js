@@ -1,10 +1,17 @@
 import React from 'react'
+import './Exercise.css'
 
-const Exercise = ({ name, category }) => {
+const Exercise = ({ name, category, chipSetsFilter }) => {
 
   const displayCategories = (categoryObj) => {
     return categoryObj.map( (category) => {
-      return <li key={category}>{category}</li>
+      return (
+        <li key={category} className="category-chip" 
+          onClick={() => chipSetsFilter(category)}
+        > 
+          {category} 
+        </li>
+        )
     })
   }
 

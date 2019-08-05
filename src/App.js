@@ -30,6 +30,10 @@ const App = () => {
     setFilterTypes({ ...filterTypes, [type]: !filterTypes[type] })
   }
 
+  const chipSetsFilter = (chipName) => {
+    setFilterTerm(chipName)
+  }
+
   return (
     <div id="App">
       <Filter 
@@ -42,6 +46,7 @@ const App = () => {
         filterBy={filterTypes} 
         filterTerm={filterTerm}
         exerciseList={exerciseList}
+        chipSetsFilter={chipSetsFilter}
       />
     </div>
   )
