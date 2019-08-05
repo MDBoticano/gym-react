@@ -1,0 +1,31 @@
+#Filter {
+  position: sticky;
+  top: 0px;
+  /* left:50%; */
+  /* display: block;     */
+
+
+  padding: 1em;
+  background-color: hsl(0, 0%, 95%);
+  filter: drop-shadow(0 0 0.5rem hsl(0, 0%, 67%))
+}
+
+#search {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#searchBar {
+  margin: .25em 0;
+  width: 100%;
+  line-height: 2em;
+  height: 2em;
+  border-radius: .75em;
+  border: 1px solid hsl(0, 0%, 67%);
+  
+}
+
+#filterTypes {
+  margin: 0;
+}

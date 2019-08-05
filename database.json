@@ -19,6 +19,51 @@
       "category": [
         "abs"
       ]
+    },
+    {
+      "name": "deadlift",
+      "category": [
+        "back"
+      ]
+    }, 
+    {
+      "name": "benchpress",
+      "category": [
+        "chest",
+        "triceps"
+      ]
+    }, 
+    {
+      "name": "incline benchpress",
+      "category": [
+        "chest",
+        "triceps"
+      ]
+    }, 
+    {
+      "name": "arnolds",
+      "category": [
+        "chest",
+        "triceps"
+      ]
+    }, 
+    {
+      "name": "bicep curls",
+      "category": [
+        "biceps"
+      ]
+    }, 
+    {
+      "name": "squat",
+      "category": [
+        "legs"
+      ]
+    }, 
+    {
+      "name": "leg press",
+      "category": [
+        "legs"
+      ]
     }
   ]
 }

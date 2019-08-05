@@ -1,31 +1,29 @@
 import React from 'react'
+import './Filter.css'
 
 const Filter = ({ filterTypes, filtersSelector, filterTerm, filterHandler }) => {
+  const createLabels = (typesToLabel) => {
+    return Object.keys(typesToLabel).map((type) =>  { return (
+      <label key={[type]}>
+        {[type]}
+        <input 
+          type="checkbox"
+          checked={filterTypes[type]}
+          onChange={()=> filtersSelector([type])}
+        />          
+      </label>
+    )})
+  }
+
   return (
     <div id="Filter">
-      <div id="searchBar">
-        <input value={filterTerm} onChange={filterHandler} />
+      <div id="search">
+        <h1>Search</h1>
+        <input id="searchBar" value={filterTerm} onChange={filterHandler} />
       </div>
 
       <div id="filterTypes">
-        <label value="">
-          Name
-          <input 
-            name="name"
-            type="checkbox"
-            checked={filterTypes.name}
-            onChange={() => filtersSelector('name')}
-          />
-        </label>
-        <label value="">
-          Category
-          <input 
-            name="category"
-            type="checkbox"
-            checked={filterTypes.category}
-            onChange={() => filtersSelector('category')}
-          />
-        </label>        
+        {createLabels(filterTypes)}
       </div>
 
     </div>

@@ -1,3 +1,10 @@
-#App {
-  margin: 2em;
+#root {
+  height: 100vh;
+  background-color: hsl(0, 0%, 97%);
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
 }

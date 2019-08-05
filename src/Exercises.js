@@ -1,5 +1,6 @@
 import React from 'react'
 import Exercise from './Exercise'
+import './Exercise.css'
 
 const Exercises = ({ filterBy, filterTerm, exerciseList, chipSetsFilter }) => {
   const filterIgnoreCase = filterTerm.toLowerCase();
