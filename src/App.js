@@ -24,7 +24,7 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <div id="App">
       <Search filterTerm={filterTerm} filterHandler={filterList} />
       <Exercises filterTerm={filterTerm} exerciseList={exerciseList}/>
     </div>

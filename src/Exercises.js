@@ -2,20 +2,42 @@ import React from 'react'
 import Exercise from './Exercise'
 
 const Exercises = ({ filterTerm, exerciseList }) => {
+  const filterIgnoreCase = filterTerm.toLowerCase();
 
-  const filterExercises = (exerciseArray) => {
-    const ignoreFilterCase = filterTerm.toLowerCase();
-
+  const filterExercisesByName = (exerciseArray) => {
     return exerciseArray.filter(exercise => {
-      return exercise.name.toLowerCase().includes(ignoreFilterCase)
+      return exercise.name.toLowerCase().includes(filterIgnoreCase)
+    }
+  )}
+
+  const filterExercisesByCategory = (exerciseArray) => {
+    return exerciseArray.filter(exercise => {
+      let categories = exercise.category
+      let filteredCategories = categories.filter(category => {
+        return category.toLowerCase().includes(filterIgnoreCase)
+      })
+      if (filteredCategories.length > 0) { 
+        return true 
+      } else {
+        return false 
+      }
     })
   }
 
-  const exercisesToDisplay = filterExercises(exerciseList)
+  const filteredByName = filterExercisesByName(exerciseList)
+  const filteredByCategory = filterExercisesByCategory(exerciseList)
+  const allFiltered = filteredByName.concat(filteredByCategory)
+    /* Remove duplicates */
+  const exercisesToDisplay = [...new Set(allFiltered)]
 
   const displayExerciseList = (exerciseList) => {
     return exerciseList.map((exercise) => {
-      return <Exercise key={exercise.name} name={exercise.name} category={exercise.category} />
+      return (
+        <Exercise 
+          key={exercise.name} 
+          name={exercise.name} 
+          category={exercise.category} 
+        />)
     })
   }
 

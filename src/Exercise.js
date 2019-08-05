@@ -1,11 +1,20 @@
 import React from 'react'
 
 const Exercise = ({ name, category }) => {
+
+  const displayCategories = (categoryObj) => {
+    console.log(categoryObj)
+    return categoryObj.map( (category) => {
+      return <li key={category}>{category}</li>
+    })
+  }
+
+
   return (
     <div className="Exercise">
       <p>{name}</p>
       <ul>
-        <li>{category}</li>
+        {displayCategories(category)}
       </ul>
     </div>
   )
