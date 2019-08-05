@@ -5,6 +5,10 @@ import Exercises from './Exercises'
 import exerciseService from './services/exerciseService'
 
 const App = () => {
+  /* for Search/Filter component */
+  const [ filterTerm, setFilterTerm ] = useState('')
+
+  /* for Exercise component */
   const [ exerciseList, setExerciseList ] = useState([])
 
   useEffect(() => {
@@ -15,13 +19,14 @@ const App = () => {
       })
   }, [])
 
-
-
+  const filterList = (event) => {
+    setFilterTerm(event.target.value)
+  }
 
   return (
     <div className="App">
-      <Search />
-      <Exercises exerciseList={exerciseList}/>
+      <Search filterTerm={filterTerm} filterHandler={filterList} />
+      <Exercises filterTerm={filterTerm} exerciseList={exerciseList}/>
     </div>
   )
 }

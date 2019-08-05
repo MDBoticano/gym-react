@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Search = () => {
+const Search = ({ filterTerm, filterHandler }) => {
   return (
     <div id="Search">
-
+      <input value={filterTerm} onChange={filterHandler} />
     </div>
   )
 }
