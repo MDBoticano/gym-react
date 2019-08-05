@@ -1,7 +1,7 @@
 import React from 'react'
 import Exercise from './Exercise'
 
-const Exercises = ({ filterTerm, exerciseList }) => {
+const Exercises = ({ filterBy, filterTerm, exerciseList }) => {
   const filterIgnoreCase = filterTerm.toLowerCase();
 
   const filterExercisesByName = (exerciseArray) => {
@@ -23,11 +23,17 @@ const Exercises = ({ filterTerm, exerciseList }) => {
       }
     })
   }
+  
+  let allFiltered = []
 
-  const filteredByName = filterExercisesByName(exerciseList)
-  const filteredByCategory = filterExercisesByCategory(exerciseList)
-  const allFiltered = filteredByName.concat(filteredByCategory)
-    /* Remove duplicates */
+  if (filterBy.name) { 
+    allFiltered = allFiltered.concat(filterExercisesByName(exerciseList))
+  }
+  if (filterBy.category) { 
+    allFiltered = allFiltered.concat(filterExercisesByCategory(exerciseList))
+  }
+
+  /* Remove duplicates */
   const exercisesToDisplay = [...new Set(allFiltered)]
 
   const displayExerciseList = (exerciseList) => {
