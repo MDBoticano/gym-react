@@ -13,7 +13,7 @@ const App = () => {
   const [filterTypes, setFilterTypes] = useState(defaultFilterTypes)
   const [exerciseList, setExerciseList] = useState([])
 
-  /* Retreive list of exercises from server */
+  /* GET: Retreive list of exercises from server */
   useEffect(() => {
     exerciseService
       .getExercises()

@@ -17,17 +17,15 @@
 .category-chip {
   display: inline-block;
   padding: .125em .66em;
-  margin: 0 .125em;
+  margin: .125em;
   font-size: .75em;
   text-align: center;
   line-height: 1.5em;
   height: 1.5em;
-  /* background-color: hsl(240, 37%, 15%); */
   background-color: hsl(0, 0%, 97%);
-  /* border: 1px solid hsl(0, 0%, 43%); */
-  /* border-radius: .75em; */
-  /* color: #f8f8f8; */
   color: hsl(0, 0%, 15%);
+  border: solid 1px hsl(0, 0%, 37%);
+  border-radius: .5em;
 }
 
 ul {
