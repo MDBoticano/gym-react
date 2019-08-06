@@ -42,8 +42,7 @@ const App = () => {
   }
 
   const makeId = () => {
-    /* +2 since IDs are 1-indexed */
-    return exerciseList.length + 2
+    return exerciseList.length + 1
   }
 
   const submitExercise = (event) => {
