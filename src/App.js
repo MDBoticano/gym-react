@@ -37,7 +37,7 @@ const App = () => {
 
   const chipSetsFilter = (chipName) => {
     /* Set sort by categories to be true */
-    setFilterTypes({...filterTypes, "category": true})
+    setFilterTypes({ ...filterTypes, "category": true })
     setFilterTerm(chipName)
   }
 
@@ -60,14 +60,14 @@ const App = () => {
       date: new Date().toISOString()
     }
 
-    if(window.confirm('Do you want to add?')) {
+    if (window.confirm('Do you want to add?')) {
       exerciseService
-      .createExercise(exerciseEntry)
-      .then(returnedEntry => {
-        setExerciseList(exerciseList.concat(returnedEntry))
-      })
-      .then(console.log('Successfully added entry'))
-      .catch(error => console.log(error.response.data))
+        .createExercise(exerciseEntry)
+        .then(returnedEntry => {
+          setExerciseList(exerciseList.concat(returnedEntry))
+        })
+        .then(console.log('Successfully added entry'))
+        .catch(error => console.log(error.response.data))
     }
 
     /* clear */
@@ -91,24 +91,25 @@ const App = () => {
 
   return (
     <div id="App">
-      <Filter 
+      <Filter
         filterTypes={filterTypes}
-        filtersSelector={filtersSelector} 
-        filterTerm={filterTerm}  
-        filterHandler={filterList} 
+        filtersSelector={filtersSelector}
+        filterTerm={filterTerm}
+        filterHandler={filterList}
       />
       <Exercises
-        filterBy={filterTypes} 
+        filterBy={filterTypes}
         filterTerm={filterTerm}
         exerciseList={exerciseList}
         chipSetsFilter={chipSetsFilter}
       />
       <AddExercise
-        submitExercise={submitExercise} 
+        submitExercise={submitExercise}
         nameHandler={nameHandler} formName={formName}
         categoriesHandler={categoriesHandler}
         resetFormName={resetFormName}
       />
+      <div id="form-underlay" className="hidden"></div>
     </div>
   )
 }

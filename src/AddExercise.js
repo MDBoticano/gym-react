@@ -12,7 +12,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
   const [addList, setAddList] = useState([])
 
   const formCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
-   "abs", "cardio"]
+   "abs", "cardio"].sort()
 
   const toggleForm = () => {
     if (!formIsVisible) {
@@ -21,6 +21,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
       document.getElementById('newExerciseForm').classList.remove('hidden')
       document.getElementById('addExerciseToggle').classList.remove('openForm')
       document.getElementById('addExerciseToggle').classList.add('closeForm')
+      document.getElementById('form-underlay').classList.remove('hidden')
       setFormIsVisible(true)
       setFormToggleText(formVisibleText)
     } else if (formIsVisible) {
@@ -29,6 +30,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
       document.getElementById('newExerciseForm').classList.add('hidden')
       document.getElementById('addExerciseToggle').classList.remove('closeForm')
       document.getElementById('addExerciseToggle').classList.add('openForm')
+      document.getElementById('form-underlay').classList.add('hidden')
       setFormIsVisible(false)
       setFormToggleText(formInvisibleText)
       resetForm()
@@ -99,6 +101,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
         {formToggleText}
       </button>
       <form id="newExerciseForm" className="hidden" onSubmit={formSubmit}>
+        <p id="form-Title">Create new exercise:</p>
         <div id="formName" className="formField">
           <label htmlFor="name">name</label>
           <input id="formNameInput"
@@ -109,8 +112,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
         <div id="formCategories" className="formField"> 
           <label htmlFor="categories">categories</label>
           <input id="formCategoriesInput" readOnly
-            type="text" name="categories" 
-            // type="hidden" name="categories"
+            type="hidden" name="categories"
             value={setCategoriesValue()}
           />
           <ul id="formCategoriesList">
