@@ -4,27 +4,44 @@
 
 #AddExercise {
   width: 100%;
-  background-color: var(--form-color);
   filter: drop-shadow(0 0 0.25rem hsl(0, 0%, 67%));
-
   position: sticky;
   bottom: 0;
 }
 
-#AddExercise .hidden {
-  display: none;
+#AddExercise.formIsClosed {
+  background: rgb(247,247,247);
+  background: rgb(247,247,247);
+  background: linear-gradient( 
+    0deg, 
+    hsla(0, 0%, 97%, 1) 0%, 
+    hsla(0, 0%, 97%, 1) 70%, 
+    hsla(0, 0%, 97%, 0) 70%, 
+    hsla(0, 0%, 97%, 0) 100%);
+}
+
+#AddExercise.formIsOpen {
+  background-color: var(--form-color);
 }
 
 #addExerciseToggle {
   font-size: 1.25em;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto .25em auto;
   background-color: var(--form-color);
   border: none;
 }
 
-.closeForm {
-  margin: 1em 1em 0 0;
+#addExerciseToggle.openForm {
+  height: 2em;
+  width: 2em;
+  border-radius: 1em;
+  background-color: rgb(185, 236, 185);
+}
+
+#addExerciseToggle.closeForm {
+  font-family: monospace;
+  margin: .5em .5em 0 0;
   float: right;
   font-size: 1em;
   color: hsl(0, 0%, 75%)
@@ -42,6 +59,10 @@
 
 #newExerciseForm label{
   display: block;
+}
+
+.hidden {
+  display: none;
 }
 
 .formField {

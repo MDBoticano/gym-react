@@ -1,7 +1,8 @@
 #Filter {
+  margin: 0 0 .125em 0;
+  padding: 1em;
   position: sticky;
   top: 0px;
-  padding: 1em;
   background-color: hsl(0, 0%, 95%);
   filter: drop-shadow(0 0 0.5rem hsl(0, 0%, 67%));
 }
