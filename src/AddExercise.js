@@ -2,13 +2,17 @@ import React, { useState } from 'react'
 import './AddExercise.css'
 
 const AddExercise = ({ submitExercise, nameHandler, formName, 
-  categoriesHandler, formCategories }) => {
+  categoriesHandler, resetFormName }) => {
 
   const formVisibleText = 'X'
   const formInvisibleText = '+'
   
   const [formIsVisible, setFormIsVisible] = useState(false)
   const [formToggleText, setFormToggleText] = useState(formInvisibleText)
+  const [addList, setAddList] = useState([])
+
+  const formCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
+   "abs", "cardio"]
 
   const toggleForm = () => {
     if (!formIsVisible) {
@@ -27,7 +31,66 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
       document.getElementById('addExerciseToggle').classList.add('openForm')
       setFormIsVisible(false)
       setFormToggleText(formInvisibleText)
+      resetForm()
     }
+  }
+
+  const mapCategoriesToList = (list) => {
+    return list.map( (name, index) => {
+      const liID = 'category-select-' + name
+      return (
+      <li key={index} id={liID}
+        className="category-chip" 
+        onClick={()=>chipSelect(name, liID)}>
+        {name}
+      </li>)
+    })
+  }
+
+  const chipSelect = (category, liID) => {
+    /* add/remove to list */
+    modifyAddList(category)
+    console.log(addList)
+
+    /* change css */
+    document.getElementById(liID).classList.toggle('chip-added')
+  }
+
+  const modifyAddList = (category) => {
+    /* add if in list, remove if not in list */
+    if (!addList.includes(category)) {
+      setAddList(addList.concat(category))
+    } else {
+      setAddList(addList.filter(listItem => listItem !== category))
+    }   
+  }
+
+  const setCategoriesValue = () => {
+    let inputValue = addList.join()
+    categoriesHandler(inputValue)
+    return inputValue
+  }
+
+  const formSubmit = (event) => {
+    event.preventDefault()
+    resetForm()
+
+    /* Do actual form submission */
+    submitExercise(event)
+  }
+
+  const resetForm = () => {
+    /* reset AddList */
+    setAddList([])
+
+    /* remove all instances of chip-added */
+    const chipAddedElems = document.getElementsByClassName('chip-added')
+    while (chipAddedElems.length > 0) {
+      chipAddedElems[0].classList.remove('chip-added')
+    }
+
+    /* reset form name field by modifying state in App */
+    resetFormName()
   }
 
   return (
@@ -35,7 +98,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
       <button id="addExerciseToggle" className="openForm" onClick={toggleForm}>
         {formToggleText}
       </button>
-      <form id="newExerciseForm" className="hidden" onSubmit={submitExercise}>
+      <form id="newExerciseForm" className="hidden" onSubmit={formSubmit}>
         <div id="formName" className="formField">
           <label htmlFor="name">name</label>
           <input id="formNameInput"
@@ -44,11 +107,15 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
           />
         </div>
         <div id="formCategories" className="formField"> 
-          <label htmlFor="categories">categories (separate by space) </label>
-          <input id="formCategoriesInput"
+          <label htmlFor="categories">categories</label>
+          <input id="formCategoriesInput" readOnly
             type="text" name="categories" 
-            onChange={categoriesHandler} value={formCategories}
+            // type="hidden" name="categories"
+            value={setCategoriesValue()}
           />
+          <ul id="formCategoriesList">
+            {mapCategoriesToList(formCategoriesList)}
+          </ul>
         </div>
         <input id="newExerciseSubmit" type="submit" value="Submit"/>
       </form>

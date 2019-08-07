@@ -14,8 +14,7 @@ const Exercise = ({ name, category, chipSetsFilter }) => {
         )
     })
   }
-
-
+  
   return (
     <div className="Exercise">
       <p>{name}</p>

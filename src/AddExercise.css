@@ -1,5 +1,6 @@
 :root {
   --form-color: hsl(0, 0%, 97%);
+  --chip-added-color: hsl(120, 35%, 57%);
 }
 
 #AddExercise {
@@ -22,6 +23,7 @@
 
 #AddExercise.formIsOpen {
   background-color: var(--form-color);
+  border-radius: 1em 1em 0 0;
 }
 
 #addExerciseToggle {
@@ -47,7 +49,8 @@
   color: hsl(0, 0%, 75%)
 }
 
-#formName label, #formName input, #formCategories label, #formCategories input {
+#formName label, #formName input, #formCategories label, #formCategories input,
+#formCategoriesList {
   width: 80%;
   display: block;
   margin: 0 auto;
@@ -77,3 +80,11 @@
   background-color: var(--form-color);
 }
 
+.chip-added {
+  color: var(--chip-added-color);
+  border-color: var(--chip-added-color);
+}
+
+#formCategoriesInput {
+  display: hidden;
+}

@@ -50,7 +50,7 @@ const App = () => {
     console.log('Name:', formName)
     console.log('Categories:', formCategories)
 
-    const splitCategories = formCategories.split(' ')
+    const splitCategories = formCategories.split(',')
     console.log(splitCategories)
 
     const exerciseEntry = {
@@ -72,15 +72,21 @@ const App = () => {
 
     /* clear */
     setFormName('')
-    setFormCategories('')
   }
 
   const nameHandler = (event) => {
     setFormName(event.target.value)
   }
 
-  const categoriesHandler = (event) => {
-    setFormCategories(event.target.value)
+  // const categoriesHandler = (event) => {
+  //   setFormCategories(event.target.value)
+  // }
+  const categoriesHandler = (categories) => {
+    setFormCategories(categories)
+  }
+
+  const resetFormName = () => {
+    setFormName('')
   }
 
   return (
@@ -100,7 +106,8 @@ const App = () => {
       <AddExercise
         submitExercise={submitExercise} 
         nameHandler={nameHandler} formName={formName}
-        categoriesHandler={categoriesHandler} formCategories={formCategories}
+        categoriesHandler={categoriesHandler}
+        resetFormName={resetFormName}
       />
     </div>
   )
