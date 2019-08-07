@@ -60,13 +60,15 @@ const App = () => {
       date: new Date().toISOString()
     }
 
-    exerciseService
+    if(window.confirm('Do you want to add?')) {
+      exerciseService
       .createExercise(exerciseEntry)
       .then(returnedEntry => {
         setExerciseList(exerciseList.concat(returnedEntry))
       })
       .then(console.log('Successfully added entry'))
       .catch(error => console.log(error.response.data))
+    }
 
     /* clear */
     setFormName('')

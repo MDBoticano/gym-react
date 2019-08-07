@@ -5,6 +5,12 @@
   padding: 0;
 }
 
+#App {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 h1 {
   margin: 0;
 }

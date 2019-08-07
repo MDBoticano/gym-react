@@ -1,0 +1,58 @@
+:root {
+  --form-color: hsl(0, 0%, 97%);
+}
+
+#AddExercise {
+  width: 100%;
+  background-color: var(--form-color);
+  filter: drop-shadow(0 0 0.25rem hsl(0, 0%, 67%));
+
+  position: sticky;
+  bottom: 0;
+}
+
+#AddExercise .hidden {
+  display: none;
+}
+
+#addExerciseToggle {
+  font-size: 1.25em;
+  display: block;
+  margin: 0 auto;
+  background-color: var(--form-color);
+  border: none;
+}
+
+.closeForm {
+  margin: 1em 1em 0 0;
+  float: right;
+  font-size: 1em;
+  color: hsl(0, 0%, 75%)
+}
+
+#formName label, #formName input, #formCategories label, #formCategories input {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+#newExerciseForm {
+  padding: .5em 1em 1em 1em;
+}
+
+#newExerciseForm label{
+  display: block;
+}
+
+.formField {
+  margin: .5em 0;
+}
+
+#newExerciseSubmit {
+  display: block;
+  margin: .5em auto 0 auto;
+  font-size: 1.25em;
+  border: none;
+  background-color: var(--form-color);
+}
+
