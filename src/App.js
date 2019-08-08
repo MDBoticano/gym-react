@@ -86,8 +86,14 @@ const App = () => {
     setFormName('')
   }
 
-  const deleteExercise = () => {
-  
+  const deleteExercise = (id) => {
+    if(window.confirm('Do you want to delete?')) {
+      exerciseService
+      .deleteExercise(id)
+      .then(returnedEntries => {
+        setExerciseList(returnedEntries)
+      })
+    }
   }
 
   return (
@@ -103,6 +109,7 @@ const App = () => {
         filterTerm={filterTerm}
         exerciseList={exerciseList}
         chipSetsFilter={chipSetsFilter}
+        deleteExercise={deleteExercise}
       />
       <AddExercise
         submitExercise={submitExercise}

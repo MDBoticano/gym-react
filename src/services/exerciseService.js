@@ -38,4 +38,4 @@ const deleteExercise = (exerciseID) => {
 //   })
 // }
 
-export default { getExercises, createExercise } 
+export default { getExercises, createExercise, deleteExercise } 

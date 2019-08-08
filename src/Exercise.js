@@ -1,7 +1,7 @@
 import React from 'react'
 import './Exercise.css'
 
-const Exercise = ({ name, category, chipSetsFilter }) => {
+const Exercise = ({ name, id, category, chipSetsFilter, deleteExercise }) => {
 
   const displayCategories = (categoryObj) => {
     return categoryObj.map( (category) => {
@@ -16,12 +16,17 @@ const Exercise = ({ name, category, chipSetsFilter }) => {
   }
   
   return (
-    <div className="Exercise">
+    <div className="Exercise" id={id}>
       <p>{name}</p>
       <div className="edit-and-delete-btns">
         <button className="edit-exercise-btn">edit</button>
         <div className="btn-divider">|</div>
-        <button className="delete-exercise-btn">delete</button>
+        <button 
+          className="delete-exercise-btn" 
+          onClick={()=>deleteExercise(id)}
+        >
+          delete
+        </button>
       </div>
       <ul>
         {displayCategories(category)}

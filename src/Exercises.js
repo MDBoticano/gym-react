@@ -1,8 +1,10 @@
 import React from 'react'
 import Exercise from './Exercise'
 import './Exercise.css'
+// import exerciseService from './services/exerciseService';
 
-const Exercises = ({ filterBy, filterTerm, exerciseList, chipSetsFilter }) => {
+const Exercises = ({ filterBy, filterTerm, exerciseList, chipSetsFilter, 
+  deleteExercise }) => {
   const filterIgnoreCase = filterTerm.toLowerCase();
 
   const filterExercisesByName = (exerciseArray) => {
@@ -36,10 +38,12 @@ const Exercises = ({ filterBy, filterTerm, exerciseList, chipSetsFilter }) => {
     return exerciseList.map((exercise) => {
       return (
         <Exercise 
-          key={exercise.name} 
+          key={exercise.name}
+          id={exercise.id} 
           name={exercise.name} 
           category={exercise.category}
           chipSetsFilter={chipSetsFilter} 
+          deleteExercise={deleteExercise}
         />)
     })
   }
