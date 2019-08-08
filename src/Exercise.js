@@ -18,6 +18,11 @@ const Exercise = ({ name, category, chipSetsFilter }) => {
   return (
     <div className="Exercise">
       <p>{name}</p>
+      <div className="edit-and-delete-btns">
+        <button className="edit-exercise-btn">edit</button>
+        <div className="btn-divider">|</div>
+        <button className="delete-exercise-btn">delete</button>
+      </div>
       <ul>
         {displayCategories(category)}
       </ul>

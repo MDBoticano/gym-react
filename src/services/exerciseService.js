@@ -20,4 +20,22 @@ const createExercise = (newExercise) => {
   })
 }
 
+/* Delete: HTTP DELETE request */
+const deleteExercise = (exerciseID) => {
+  const request = axios.delete(`${baseURL}/${exerciseID}`)
+  return request.then(() => {
+    return getExercises()
+  })
+}
+
+// const deleteEntry = (id) => {
+//   const request = axios.delete(`${baseUrl}/${id}`)
+//   console.log('Deleted entry at id', `${id}`)
+//   return request.then(() => {
+//     // axios.delete by default doesn't return a promise, so we make one
+//     // We use getEntries to retrieve the updated data and return it as a promise
+//     return getEntries()
+//   })
+// }
+
 export default { getExercises, createExercise } 

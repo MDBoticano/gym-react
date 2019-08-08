@@ -78,15 +78,16 @@ const App = () => {
     setFormName(event.target.value)
   }
 
-  // const categoriesHandler = (event) => {
-  //   setFormCategories(event.target.value)
-  // }
   const categoriesHandler = (categories) => {
     setFormCategories(categories)
   }
 
   const resetFormName = () => {
     setFormName('')
+  }
+
+  const deleteExercise = () => {
+  
   }
 
   return (

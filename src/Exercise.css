@@ -6,6 +6,8 @@
   padding: 0 1em .125em 1em;
   margin: .125em 0;
   background-color: hsl(0, 0%, 94%);
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
 .Exercise p {
@@ -31,4 +33,14 @@
 ul {
   padding: 0;
   margin: .125em 0 .25em 0;
+}
+
+.edit-and-delete-btns {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.btn-divider {
+  margin: auto 0;
+  vertical-align: middle;
 }
