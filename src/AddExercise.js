@@ -75,7 +75,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
 
   const formSubmit = (event) => {
     event.preventDefault()
-    resetForm()
+    toggleForm()
 
     /* Do actual form submission */
     submitExercise(event)
