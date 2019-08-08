@@ -2,12 +2,14 @@
   "exerciseList": [
     {
       "name": "running",
+      "id": 0,
       "category": [
         "cardio"
       ]
     },
     {
       "name": "pushup",
+      "id": 1,
       "category": [
         "triceps",
         "chest",
@@ -16,18 +18,21 @@
     },
     {
       "name": "situp",
+      "id": 2,
       "category": [
         "abs"
       ]
     },
     {
       "name": "deadlift",
+      "id": 3,
       "category": [
         "back"
       ]
     },
     {
       "name": "benchpress",
+      "id": 4,
       "category": [
         "chest",
         "triceps"
@@ -35,6 +40,7 @@
     },
     {
       "name": "incline benchpress",
+      "id": 5,
       "category": [
         "chest",
         "triceps"
@@ -42,6 +48,7 @@
     },
     {
       "name": "arnolds",
+      "id": 6,
       "category": [
         "chest",
         "triceps"
@@ -49,21 +56,39 @@
     },
     {
       "name": "bicep curls",
+      "id": 7,
       "category": [
         "biceps"
       ]
     },
     {
       "name": "squat",
+      "id": 8,
       "category": [
         "legs"
       ]
     },
     {
       "name": "leg press",
+      "id": 9,
       "category": [
         "legs"
       ]
+    },
+    {
+      "name": "planks",
+      "id": 10,
+      "category": [
+        "abs"
+      ]
+    },
+    {
+      "name": "shoulder press",
+      "id": 11,
+      "category": [
+        "shoulders"
+      ],
+      "date": "2019-08-08T17:25:31.800Z"
     }
   ]
 }
