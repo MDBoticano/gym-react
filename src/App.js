@@ -71,7 +71,7 @@ const App = () => {
     }
 
     /* clear */
-    setFormName('')
+    resetFormName()
   }
 
   const nameHandler = (event) => {
@@ -87,7 +87,13 @@ const App = () => {
   }
 
   const deleteExercise = (id) => {
-    if(window.confirm('Do you want to delete?')) {
+    /* get name at id */
+    // look at state exerciseList
+    let objectOfId = exerciseList.find(exercise => exercise.id === id)
+    console.log(objectOfId)
+    console.log(objectOfId.name)
+
+    if(window.confirm(`Do you want to delete ${objectOfId.name}?`)) {
       exerciseService
       .deleteExercise(id)
       .then(returnedEntries => {
