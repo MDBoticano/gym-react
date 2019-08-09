@@ -12,7 +12,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
   const [addList, setAddList] = useState([])
 
   const formCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
-   "abs", "cardio"].sort()
+   "abs", "legs", "cardio"].sort()
 
   const toggleForm = () => {
     if (!formIsVisible) {

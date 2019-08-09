@@ -10,7 +10,7 @@ const EditExercise = ({
   }) => {
 
   const allCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
-   "abs", "cardio"].sort()
+   "abs", "legs", "cardio"].sort()
 
 
   /* convert categories array into chips */
@@ -35,8 +35,27 @@ const EditExercise = ({
   }
 
   /* make chips toggle-able: (1) Style, (2) in formCategories */
-  const toggleChip = () => {
+  const toggleChip = (name, ID) => {
+    /* modify formCategories */
 
+    // if in formCategories, remove it,
+    if (formCategories.includes(name)) {
+      categoriesHandler(formCategories.filter(
+        category => category !== name
+      ))
+    } else {
+      categoriesHandler(formCategories.concat(name))
+    }
+
+
+    // if not in formCategories, add it
+
+
+    /* Style */
+    console.log('clicked chip', ID)
+    /* style it */
+    document.getElementById(ID).classList.remove('chip-in-array')
+  
   }
 
   return (

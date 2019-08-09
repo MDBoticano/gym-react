@@ -107,6 +107,7 @@ const App = () => {
 
   const editCategoriesHandler = (categories) => {
     setEditCategories(categories)
+    console.log(editCategories)
   }
 
   const deleteExercise = (id) => {

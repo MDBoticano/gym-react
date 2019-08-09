@@ -63,9 +63,10 @@
     },
     {
       "id": 8,
-      "name": "weighted squats",
+      "name": "weighted squat",
       "category": [
-        "legs"
+        "legs",
+        "back"
       ]
     },
     {
