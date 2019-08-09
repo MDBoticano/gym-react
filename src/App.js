@@ -74,6 +74,10 @@ const App = () => {
         .catch(error => console.log(error.response.data))
     }
 
+    if(isEditingEntry) {
+
+    }
+
     /* regardless of confirmation response, reset form name */
     resetFormName()
     // setFormIsVisible(false)
@@ -109,7 +113,9 @@ const App = () => {
 
     /* open create form */
     setFormIsVisible(true)
-    console.log(formIsVisible)
+    // setFormIsVisible(!formIsVisible)
+    // console.log('App state',formIsVisible)
+    console.log('App state', true)
     /* pre-load current data */
 
     /* turn flag on to make submit a PUT request instead */
@@ -133,13 +139,13 @@ const App = () => {
         deleteExercise={deleteExercise}
       />
       <AddExercise
-        formVisibility={formIsVisible} setFormVisibility={setFormIsVisible}
+        formVisible={formIsVisible} setFormVisible={setFormIsVisible}
         submitExercise={submitExercise}
         nameHandler={nameHandler} formName={formName}
         categoriesHandler={categoriesHandler}
         resetFormName={resetFormName}
       />
-      <div id="form-underlay" className="hidden"></div>
+      {/* <div id="form-underlay" className="hidden"></div> */}
     </div>
   )
 }

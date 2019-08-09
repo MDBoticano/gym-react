@@ -20,11 +20,11 @@ const Exercise = ({ name, id, category, chipSetsFilter, updateExercise,
     <div className="Exercise" id={id}>
       <p>{name}</p>
       <div className="edit-and-delete-btns">
-        <button className="edit-exercise" onClick={()=>updateExercise(id)}>
+        <button className="edit-exercise" onClick={() => updateExercise(id)}>
           edit
         </button>
         <div className="btn-divider">|</div>
-        <button className="delete-exercise" onClick={()=>deleteExercise(id)}>
+        <button className="delete-exercise" onClick={() => deleteExercise(id)}>
           delete
         </button>
       </div>

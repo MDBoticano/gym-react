@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import './AddExercise.css'
 
-const AddExercise = ({ formVisibility, setFormVisibility, submitExercise, 
+const AddExercise = ({ formVisible, setFormVisible, submitExercise,
   nameHandler, formName, categoriesHandler, resetFormName }) => {
 
   const formVisibleText = 'X'
   const formInvisibleText = '+'
 
-
-  const [formIsVisible, setFormIsVisible] = useState(formVisibility)
-
-  
-
   const [formToggleText, setFormToggleText] = useState(formInvisibleText)
   const [addList, setAddList] = useState([])
 
+  const [formIsVisible, setFormIsVisible] = useState(formVisible)
+
+  useEffect(() => {
+    setFormIsVisible(formVisible)
+  }, [formVisible])
+
+  console.log('AddExercise state', formIsVisible)
 
   const formCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
-   "abs", "cardio"].sort()
+    "abs", "cardio"].sort()
 
   const toggleForm = () => {
     if (!formIsVisible) {
@@ -28,7 +30,8 @@ const AddExercise = ({ formVisibility, setFormVisibility, submitExercise,
       document.getElementById('addExerciseToggle').classList.remove('openForm')
       document.getElementById('addExerciseToggle').classList.add('closeForm')
       document.getElementById('form-underlay').classList.remove('hidden')
-      setFormIsVisible(true)
+      setFormIsVisible(true) /* local state */
+      // setFormVisible(true) /* Parent (App.js) state */
       setFormToggleText(formVisibleText)
     } else if (formIsVisible) {
       console.log('closing form')
@@ -38,29 +41,22 @@ const AddExercise = ({ formVisibility, setFormVisibility, submitExercise,
       document.getElementById('addExerciseToggle').classList.remove('closeForm')
       document.getElementById('addExerciseToggle').classList.add('openForm')
       document.getElementById('form-underlay').classList.add('hidden')
-      setFormVisibility(false)
-      // setFormIsVisible(false)
+      setFormIsVisible(false) /* local state */
+      // setFormVisible(false) /* Parent (App.js) state */
       setFormToggleText(formInvisibleText)
       resetForm()
     }
   }
 
-  useEffect(()=> {
-    setFormIsVisible(formVisibility)
-    if (formVisibility) { toggleForm() }
-  }, [formVisibility, toggleForm])
-  console.log('AddExercise formVisibility (prop):', formVisibility)
-  console.log('AddExercise formIsVisible (state):', formIsVisible)
-
   const mapCategoriesToList = (list) => {
-    return list.map( (name, index) => {
+    return list.map((name, index) => {
       const liID = 'category-select-' + name
       return (
-      <li key={index} id={liID}
-        className="category-chip" 
-        onClick={()=>chipSelect(name, liID)}>
-        {name}
-      </li>)
+        <li key={index} id={liID}
+          className="category-chip"
+          onClick={() => chipSelect(name, liID)}>
+          {name}
+        </li>)
     })
   }
 
@@ -79,7 +75,7 @@ const AddExercise = ({ formVisibility, setFormVisibility, submitExercise,
       setAddList(addList.concat(category))
     } else {
       setAddList(addList.filter(listItem => listItem !== category))
-    }   
+    }
   }
 
   const setCategoriesValue = () => {
@@ -113,33 +109,107 @@ const AddExercise = ({ formVisibility, setFormVisibility, submitExercise,
     resetFormName()
   }
 
+  const formType = (isVisible) => {
+    if (isVisible) {
+      return (
+        <>
+        <div id="AddExercise" className="formIsOpen">
+          <button id="addExerciseToggle" className="closeForm" onClick={toggleForm}>
+            {formToggleText}
+          </button>
+          <form id="newExerciseForm" onSubmit={formSubmit}>
+            <p id="form-Title">Create new exercise:</p>
+            <div id="formName" className="formField">
+              <label htmlFor="name">name</label>
+              <input id="formNameInput"
+                type="text" name="exercise_name"
+                onChange={nameHandler} value={formName}
+              />
+            </div>
+            <div id="formCategories" className="formField">
+              <label htmlFor="categories">categories</label>
+              <input id="formCategoriesInput" readOnly
+                type="hidden" name="categories"
+                value={setCategoriesValue()}
+              />
+              <ul id="formCategoriesList">
+                {mapCategoriesToList(formCategoriesList)}
+              </ul>
+            </div>
+            <input id="newExerciseSubmit" type="submit" value="Submit" />
+          </form>
+        </div>
+        <div id="form-underlay" className="hidden"></div>
+        </>
+      )
+    } else if (!isVisible) {
+      return (
+        <>
+        <div id="AddExercise" className="formIsClosed">
+          <button id="addExerciseToggle" className="openForm" onClick={toggleForm}>
+            {formToggleText}
+          </button>
+          <form id="newExerciseForm" className="hidden" onSubmit={formSubmit}>
+            <p id="form-Title">Create new exercise:</p>
+            <div id="formName" className="formField">
+              <label htmlFor="name">name</label>
+              <input id="formNameInput"
+                type="text" name="exercise_name"
+                onChange={nameHandler} value={formName}
+              />
+            </div>
+            <div id="formCategories" className="formField">
+              <label htmlFor="categories">categories</label>
+              <input id="formCategoriesInput" readOnly
+                type="hidden" name="categories"
+                value={setCategoriesValue()}
+              />
+              <ul id="formCategoriesList">
+                {mapCategoriesToList(formCategoriesList)}
+              </ul>
+            </div>
+            <input id="newExerciseSubmit" type="submit" value="Submit" />
+          </form>
+        </div>
+        <div id="form-underlay" className="hidden"></div>
+        </>
+      )
+    }
+  }
+
+  // return (
+  //   <div id="AddExercise" className="formIsClosed">
+  //     <button id="addExerciseToggle" className="openForm" onClick={toggleForm}>
+  //       {formToggleText}
+  //     </button>
+  //     <form id="newExerciseForm" className="hidden" onSubmit={formSubmit}>
+  //       <p id="form-Title">Create new exercise:</p>
+  //       <div id="formName" className="formField">
+  //         <label htmlFor="name">name</label>
+  //         <input id="formNameInput"
+  //           type="text" name="exercise_name"
+  //           onChange={nameHandler} value={formName}
+  //         />
+  //       </div>
+  //       <div id="formCategories" className="formField">
+  //         <label htmlFor="categories">categories</label>
+  //         <input id="formCategoriesInput" readOnly
+  //           type="hidden" name="categories"
+  //           value={setCategoriesValue()}
+  //         />
+  //         <ul id="formCategoriesList">
+  //           {mapCategoriesToList(formCategoriesList)}
+  //         </ul>
+  //       </div>
+  //       <input id="newExerciseSubmit" type="submit" value="Submit" />
+  //     </form>
+  //   </div>
+  // )
+
   return (
-    <div id="AddExercise" className="formIsClosed">
-      <button id="addExerciseToggle" className="openForm" onClick={toggleForm}>
-        {formToggleText}
-      </button>
-      <form id="newExerciseForm" className="hidden" onSubmit={formSubmit}>
-        <p id="form-Title">Create new exercise:</p>
-        <div id="formName" className="formField">
-          <label htmlFor="name">name</label>
-          <input id="formNameInput"
-            type="text" name="exercise_name" 
-            onChange={nameHandler} value={formName}
-          />
-        </div>
-        <div id="formCategories" className="formField"> 
-          <label htmlFor="categories">categories</label>
-          <input id="formCategoriesInput" readOnly
-            type="hidden" name="categories"
-            value={setCategoriesValue()}
-          />
-          <ul id="formCategoriesList">
-            {mapCategoriesToList(formCategoriesList)}
-          </ul>
-        </div>
-        <input id="newExerciseSubmit" type="submit" value="Submit"/>
-      </form>
-    </div>
+    <React.Fragment>
+      {formType(formIsVisible)}
+    </React.Fragment>
   )
 }
 
