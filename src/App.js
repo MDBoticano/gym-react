@@ -18,6 +18,10 @@ const App = () => {
   /* From form */
   const [formName, setFormName] = useState('')
   const [formCategories, setFormCategories] = useState('')
+
+  /* For Edit */
+  const [editName, setEditName] = useState('')
+  const [editCategories, setEditCategories] = useState([])
   const [formID, setFormID] = useState(-1)
 
   /* GET: Retreive list of exercises from server */
@@ -88,8 +92,20 @@ const App = () => {
     setFormName('')
   }
 
+  const resetFormCategories = () => {
+    setFormCategories([])
+  }
+
   const resetFormID = () => {
     setFormID(-1)
+  }
+
+  const editNameHandler = (event) => {
+    setEditName(event.target.value)
+  }
+
+  const editCategoriesHandler = (categories) => {
+    setEditCategories(categories)
   }
 
   const deleteExercise = (id) => {
@@ -113,16 +129,16 @@ const App = () => {
   const submitEdit = (event) => {
     event.preventDefault()
     console.log('ID:', formID)
-    console.log('Name:', formName)
-    console.log('Categories:', formCategories)
+    console.log('Name:', editName)
+    console.log('Categories:', editCategories)
 
-    const splitCategories = formCategories.split(',')
-    console.log(splitCategories)
+    // const splitCategories = editCategories.split(',')
+    // console.log(splitCategories)
 
     const exerciseEntry = {
-      name: formName,
       id: formID,
-      category: splitCategories,
+      name: editName,
+      category: editCategories,
     }
 
     if (window.confirm(`Do you want to edit ${formName}?`)) {
@@ -142,7 +158,12 @@ const App = () => {
 
   /* Used by Exercise component: Opens EditExercise form/component */
   const updateExercise = (id) => {
-    setFormID(id)
+    console.log('updating')
+    const elementWithID = exerciseList.find(exercise => exercise.id === id)
+
+    setFormID(elementWithID.id)
+    setEditName(elementWithID.name)
+    setEditCategories(elementWithID.category)
   }
 
   return (
@@ -163,17 +184,17 @@ const App = () => {
       />
       <AddExercise
         submitExercise={submitExercise}
-        nameHandler={nameHandler} formName={formName}
+        formName={formName} nameHandler={nameHandler}
         categoriesHandler={categoriesHandler}
         resetFormName={resetFormName}
       />
       <EditExercise 
         submitEdit={submitEdit}
-        nameHandler={nameHandler} formName={formName}
-        formCategories={formCategories} categoriesHandler={categoriesHandler}
-        resetFormName={resetFormName}
+        formName={editName} nameHandler={editNameHandler}
+        formCategories={editCategories} 
+        categoriesHandler={editCategoriesHandler}
+        resetFormName={resetFormName} resetFormCategories={resetFormCategories}
       />
-      
     </div>
   )
 }
