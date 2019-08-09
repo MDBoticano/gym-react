@@ -47,15 +47,8 @@ const EditExercise = ({
       categoriesHandler(formCategories.concat(name))
     }
 
-
-    // if not in formCategories, add it
-
-
     /* Style */
-    console.log('clicked chip', ID)
-    /* style it */
     document.getElementById(ID).classList.remove('chip-in-array')
-  
   }
 
   return (

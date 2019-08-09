@@ -84,12 +84,11 @@
       ]
     },
     {
-      "name": "shoulder press",
       "id": 12,
+      "name": "shoulder press",
       "category": [
         "shoulders"
-      ],
-      "date": "2019-08-09T05:37:00.844Z"
+      ]
     }
   ]
 }

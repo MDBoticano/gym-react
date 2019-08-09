@@ -107,7 +107,6 @@ const App = () => {
 
   const editCategoriesHandler = (categories) => {
     setEditCategories(categories)
-    console.log(editCategories)
   }
 
   const deleteExercise = (id) => {
@@ -143,7 +142,7 @@ const App = () => {
       category: editCategories,
     }
 
-    if (window.confirm(`Do you want to edit ${formName}?`)) {
+    if (window.confirm(`Do you want to edit ${editName}?`)) {
       exerciseService
         .updateExercise(formID, exerciseEntry)
         .then(returnedExercise => {
@@ -164,7 +163,7 @@ const App = () => {
 
   /* Used by Exercise component: Opens EditExercise form/component */
   const updateExercise = (id) => {
-    console.log('updateExercise() via App.js')
+    // console.log('updateExercise() via App.js')
     const elementWithID = exerciseList.find(exercise => exercise.id === id)
 
     setFormID(elementWithID.id)
