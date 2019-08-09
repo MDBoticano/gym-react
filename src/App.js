@@ -64,18 +64,24 @@ const App = () => {
       date: new Date().toISOString()
     }
 
-    if (window.confirm('Do you want to add?')) {
-      exerciseService
-        .createExercise(exerciseEntry)
-        .then(returnedEntry => {
-          setExerciseList(exerciseList.concat(returnedEntry))
-        })
-        .then(console.log('Successfully added entry'))
-        .catch(error => console.log(error.response.data))
-    }
+   
 
     if(isEditingEntry) {
+      console.log('submit makes update request')
+      
+      setIsEditingEntry(false)
+    }
 
+    else if (!isEditingEntry) {
+      if (window.confirm('Do you want to add?')) {
+        exerciseService
+          .createExercise(exerciseEntry)
+          .then(returnedEntry => {
+            setExerciseList(exerciseList.concat(returnedEntry))
+          })
+          .then(console.log('Successfully added entry'))
+          .catch(error => console.log(error.response.data))
+      }
     }
 
     /* regardless of confirmation response, reset form name */

@@ -42,11 +42,24 @@ const AddExercise = ({ formVisible, setFormVisible, submitExercise,
       document.getElementById('addExerciseToggle').classList.add('openForm')
       document.getElementById('form-underlay').classList.add('hidden')
       setFormIsVisible(false) /* local state */
-      // setFormVisible(false) /* Parent (App.js) state */
+      setFormVisible(false) /* Parent (App.js) state */
       setFormToggleText(formInvisibleText)
       resetForm()
     }
   }
+
+  // const toggleForm = () => {
+  //   if (formIsVisible) {
+  //     setFormIsVisible(false) /* local state */
+  //     setFormVisible(false) /* Parent (App.js) state */
+  //     setFormToggleText(formInvisibleText)
+  //     resetForm()
+  //   } else {
+  //     setFormIsVisible(true) /* local state */
+  //     // setFormVisible(true) /* Parent (App.js) state */
+  //     setFormToggleText(formVisibleText)
+  //   }
+  // }
 
   const mapCategoriesToList = (list) => {
     return list.map((name, index) => {
@@ -111,6 +124,9 @@ const AddExercise = ({ formVisible, setFormVisible, submitExercise,
 
   const formType = (isVisible) => {
     if (isVisible) {
+      if(formToggleText === formInvisibleText) {
+        setFormToggleText(formVisibleText)
+      }
       return (
         <>
         <div id="AddExercise" className="formIsOpen">
