@@ -56,14 +56,14 @@
     },
     {
       "id": 7,
-      "name": "bicep curl",
+      "name": "bicep curls",
       "category": [
         "biceps"
       ]
     },
     {
-      "name": "squat",
       "id": 8,
+      "name": "weighted squats",
       "category": [
         "legs"
       ]

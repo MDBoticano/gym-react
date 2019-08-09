@@ -145,10 +145,13 @@ const App = () => {
     if (window.confirm(`Do you want to edit ${formName}?`)) {
       exerciseService
         .updateExercise(formID, exerciseEntry)
-        .then(returnedEntry => {
-          setExerciseList(exerciseList.concat(returnedEntry))
+        .then(returnedExercise => {
+          setExerciseList(exerciseList.map(exercise => {
+            if(exercise.id !== formID) { return exercise }
+            else { return returnedExercise}
+          }))
         })
-        .then(console.log('Successfully added entry'))
+        .then(console.log('Successfully edited entry'))
         .catch(error => console.log(error.response.data))
     }
 
