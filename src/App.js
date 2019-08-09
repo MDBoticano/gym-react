@@ -18,6 +18,10 @@ const App = () => {
   const [formName, setFormName] = useState('')
   const [formCategories, setFormCategories] = useState('')
 
+  const [formIsVisible, setFormIsVisible] = useState(false)
+
+  const [isEditingEntry, setIsEditingEntry] = useState('false')
+
   /* GET: Retreive list of exercises from server */
   useEffect(() => {
     exerciseService
@@ -36,7 +40,7 @@ const App = () => {
   }
 
   const chipSetsFilter = (chipName) => {
-    /* Set sort by categories to be true */
+    /* Ensure filtering by categories is enabled */
     setFilterTypes({ ...filterTypes, "category": true })
     setFilterTerm(chipName)
   }
@@ -70,8 +74,9 @@ const App = () => {
         .catch(error => console.log(error.response.data))
     }
 
-    /* clear */
+    /* regardless of confirmation response, reset form name */
     resetFormName()
+    // setFormIsVisible(false)
   }
 
   const nameHandler = (event) => {
@@ -88,18 +93,27 @@ const App = () => {
 
   const deleteExercise = (id) => {
     /* get name at id */
-    // look at state exerciseList
     let objectOfId = exerciseList.find(exercise => exercise.id === id)
-    console.log(objectOfId)
-    console.log(objectOfId.name)
 
     if(window.confirm(`Do you want to delete ${objectOfId.name}?`)) {
       exerciseService
-      .deleteExercise(id)
-      .then(returnedEntries => {
-        setExerciseList(returnedEntries)
-      })
+        .deleteExercise(id)
+        .then(returnedEntries => {
+          setExerciseList(returnedEntries)
+        })
     }
+  }
+
+  const updateExercise = (id) => {
+    console.log(id)
+
+    /* open create form */
+    setFormIsVisible(true)
+    console.log(formIsVisible)
+    /* pre-load current data */
+
+    /* turn flag on to make submit a PUT request instead */
+    setIsEditingEntry(true)
   }
 
   return (
@@ -115,9 +129,11 @@ const App = () => {
         filterTerm={filterTerm}
         exerciseList={exerciseList}
         chipSetsFilter={chipSetsFilter}
+        updateExercise={updateExercise}
         deleteExercise={deleteExercise}
       />
       <AddExercise
+        formVisibility={formIsVisible} setFormVisibility={setFormIsVisible}
         submitExercise={submitExercise}
         nameHandler={nameHandler} formName={formName}
         categoriesHandler={categoriesHandler}

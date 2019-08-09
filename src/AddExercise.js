@@ -1,21 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './AddExercise.css'
 
-const AddExercise = ({ submitExercise, nameHandler, formName, 
-  categoriesHandler, resetFormName }) => {
+const AddExercise = ({ formVisibility, setFormVisibility, submitExercise, 
+  nameHandler, formName, categoriesHandler, resetFormName }) => {
 
   const formVisibleText = 'X'
   const formInvisibleText = '+'
+
+
+  const [formIsVisible, setFormIsVisible] = useState(formVisibility)
+
   
-  const [formIsVisible, setFormIsVisible] = useState(false)
+
   const [formToggleText, setFormToggleText] = useState(formInvisibleText)
   const [addList, setAddList] = useState([])
+
 
   const formCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
    "abs", "cardio"].sort()
 
   const toggleForm = () => {
     if (!formIsVisible) {
+      console.log('opening form')
       document.getElementById('AddExercise').classList.remove('formIsClosed')
       document.getElementById('AddExercise').classList.add('formIsOpen')
       document.getElementById('newExerciseForm').classList.remove('hidden')
@@ -25,17 +31,26 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
       setFormIsVisible(true)
       setFormToggleText(formVisibleText)
     } else if (formIsVisible) {
+      console.log('closing form')
       document.getElementById('AddExercise').classList.remove('formIsOpen')
       document.getElementById('AddExercise').classList.add('formIsClosed')
       document.getElementById('newExerciseForm').classList.add('hidden')
       document.getElementById('addExerciseToggle').classList.remove('closeForm')
       document.getElementById('addExerciseToggle').classList.add('openForm')
       document.getElementById('form-underlay').classList.add('hidden')
-      setFormIsVisible(false)
+      setFormVisibility(false)
+      // setFormIsVisible(false)
       setFormToggleText(formInvisibleText)
       resetForm()
     }
   }
+
+  useEffect(()=> {
+    setFormIsVisible(formVisibility)
+    if (formVisibility) { toggleForm() }
+  }, [formVisibility, toggleForm])
+  console.log('AddExercise formVisibility (prop):', formVisibility)
+  console.log('AddExercise formIsVisible (state):', formIsVisible)
 
   const mapCategoriesToList = (list) => {
     return list.map( (name, index) => {
@@ -79,6 +94,9 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
 
     /* Do actual form submission */
     submitExercise(event)
+
+    /* close form regardless of choice */
+    setFormIsVisible(false)
   }
 
   const resetForm = () => {

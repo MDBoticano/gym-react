@@ -4,7 +4,7 @@ import './Exercise.css'
 // import exerciseService from './services/exerciseService';
 
 const Exercises = ({ filterBy, filterTerm, exerciseList, chipSetsFilter, 
-  deleteExercise }) => {
+  updateExercise, deleteExercise }) => {
   const filterIgnoreCase = filterTerm.toLowerCase();
 
   const filterExercisesByName = (exerciseArray) => {
@@ -42,7 +42,8 @@ const Exercises = ({ filterBy, filterTerm, exerciseList, chipSetsFilter,
           id={exercise.id} 
           name={exercise.name} 
           category={exercise.category}
-          chipSetsFilter={chipSetsFilter} 
+          chipSetsFilter={chipSetsFilter}
+          updateExercise={updateExercise}
           deleteExercise={deleteExercise}
         />)
     })
