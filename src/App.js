@@ -157,6 +157,7 @@ const App = () => {
     }
 
     /* clear */
+    setEditVisible('hidden')
     resetFormName()
     resetFormID()
   }
