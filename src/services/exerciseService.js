@@ -28,14 +28,11 @@ const deleteExercise = (exerciseID) => {
   })
 }
 
-// const deleteEntry = (id) => {
-//   const request = axios.delete(`${baseUrl}/${id}`)
-//   console.log('Deleted entry at id', `${id}`)
-//   return request.then(() => {
-//     // axios.delete by default doesn't return a promise, so we make one
-//     // We use getEntries to retrieve the updated data and return it as a promise
-//     return getEntries()
-//   })
-// }
+/* Update: HTTP PUT request */
+const updateExercise = (exerciseID, updatedExercise) => {
+  const request = axios.put(`${baseURL}/${exerciseID}`, updatedExercise)
+  return request.then(response => response.data)
+}
 
-export default { getExercises, createExercise, deleteExercise } 
+
+export default { getExercises, createExercise, deleteExercise, updateExercise } 
