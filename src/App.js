@@ -23,6 +23,7 @@ const App = () => {
   const [editName, setEditName] = useState('')
   const [editCategories, setEditCategories] = useState([])
   const [formID, setFormID] = useState(-1)
+  const [editVisible, setEditVisible] = useState('hidden')
 
   /* GET: Retreive list of exercises from server */
   useEffect(() => {
@@ -158,12 +159,21 @@ const App = () => {
 
   /* Used by Exercise component: Opens EditExercise form/component */
   const updateExercise = (id) => {
-    console.log('updating')
+    console.log('updateExercise() via App.js')
     const elementWithID = exerciseList.find(exercise => exercise.id === id)
 
     setFormID(elementWithID.id)
     setEditName(elementWithID.name)
     setEditCategories(elementWithID.category)
+    setEditVisible('') /* make component visible by replacing hidden class */
+  }
+
+  const hideEdit = () => {
+    /* clear form */
+    setFormID(-1)
+    setEditName('')
+    setEditCategories([])
+    setEditVisible('hidden') /* Hide the component */
   }
 
   return (
@@ -193,6 +203,7 @@ const App = () => {
         formName={editName} nameHandler={editNameHandler}
         formCategories={editCategories} 
         categoriesHandler={editCategoriesHandler}
+        editVisible={editVisible} hideEdit={hideEdit}
         resetFormName={resetFormName} resetFormCategories={resetFormCategories}
       />
     </div>
