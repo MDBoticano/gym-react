@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './AddExercise.css'
 
 const AddExercise = ({ formVisible, setFormVisible, submitExercise,
-  nameHandler, formName, categoriesHandler, resetFormName }) => {
+  nameHandler, formName, formCategories, categoriesHandler, resetFormName }) => {
 
   const formVisibleText = 'X'
   const formInvisibleText = '+'

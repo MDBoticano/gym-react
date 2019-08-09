@@ -17,6 +17,7 @@ const App = () => {
   /* From form */
   const [formName, setFormName] = useState('')
   const [formCategories, setFormCategories] = useState('')
+  const [formID, setFormID] = useState(-1)
 
   const [formIsVisible, setFormIsVisible] = useState(false)
 
@@ -97,6 +98,10 @@ const App = () => {
     setFormCategories(categories)
   }
 
+  const formIDHandler = (event) => {
+    setFormID(event.target.value)
+  }
+
   const resetFormName = () => {
     setFormName('')
   }
@@ -119,9 +124,8 @@ const App = () => {
 
     /* open create form */
     setFormIsVisible(true)
-    // setFormIsVisible(!formIsVisible)
-    // console.log('App state',formIsVisible)
     console.log('App state', true)
+    
     /* pre-load current data */
 
     /* turn flag on to make submit a PUT request instead */
@@ -148,10 +152,10 @@ const App = () => {
         formVisible={formIsVisible} setFormVisible={setFormIsVisible}
         submitExercise={submitExercise}
         nameHandler={nameHandler} formName={formName}
-        categoriesHandler={categoriesHandler}
+        formCategories={formCategories} categoriesHandler={categoriesHandler}
+        formID={formID} formIDHandler={formIDHandler}
         resetFormName={resetFormName}
       />
-      {/* <div id="form-underlay" className="hidden"></div> */}
     </div>
   )
 }
