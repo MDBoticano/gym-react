@@ -96,6 +96,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
   }
 
   return (
+    <>
     <div id="AddExercise" className="formIsClosed">
       <button id="addExerciseToggle" className="openForm" onClick={toggleForm}>
         {formToggleText}
@@ -122,6 +123,8 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
         <input id="newExerciseSubmit" type="submit" value="Submit"/>
       </form>
     </div>
+    <div id="form-underlay" className="hidden"></div>
+    </>
   )
 }
 

@@ -60,7 +60,7 @@ const App = () => {
       date: new Date().toISOString()
     }
 
-    if (window.confirm('Do you want to add?')) {
+    if (window.confirm(`Do you want to add ${formName}?`)) {
       exerciseService
         .createExercise(exerciseEntry)
         .then(returnedEntry => {
@@ -123,7 +123,7 @@ const App = () => {
         categoriesHandler={categoriesHandler}
         resetFormName={resetFormName}
       />
-      <div id="form-underlay" className="hidden"></div>
+      
     </div>
   )
 }
