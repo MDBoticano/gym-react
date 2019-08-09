@@ -1,5 +1,83 @@
-.chip-in-array {
-  color: green;
-  border-color: green;
-  background-color: pink;
+#EditExercise {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  background-color: var(--form-color);
+  border-radius: 1em;
+}
+
+#closeEdit {
+  font-size: 1.25em;
+  display: block;
+  margin: 0 auto .25em auto;
+  background-color: var(--form-color);
+  border: none;
+  font-family: monospace;
+  margin: .75em .75em 0 0;
+  float: right;
+  font-size: 1em;
+  color: hsl(0, 0%, 75%)
+}
+
+#editExerciseForm label, #editNameInput, #editCategoriesList {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+#edit-form-title {
+  width: 80%;
+  margin: .25em auto;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#editExerciseForm {
+  padding: .5em 1em 1em 1em;
+}
+
+#editExerciseForm label {
+  font-size: 1.25em;
+  display: block;
+}
+
+#editNameInput {
+  font-size: 1.25em;
+  height: 1.5em;
+  background-color: hsl(0, 0%, 100%);
+  border: none;
+  border-bottom: 2px solid hsl(0, 0%, 54%);
+}
+
+#editCategoriesList .category-chip {
+  font-size: 1em;
+  margin: .25em;
+  color: hsl(0, 0%, 70%);
+  border-color: hsl(0, 0%, 70%);
+}
+
+#editCategoriesList .chip-in-array {
+  color: var(--chip-added-color);
+  border-color: var(--chip-added-color);
+}
+
+#editExerciseSubmit {
+  display: block;
+  margin: 1em auto .25em auto;
+  padding: 0 1.5em;
+  font-size: 1.25em;
+  height: 2.5em;
+  border: none;
+  border-radius: 1.25em;
+  color: white;
+  background-color: hsl(226, 65%, 55%);
+}
+
+#edit-underlay {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .25);
+  z-index: 4;
 }

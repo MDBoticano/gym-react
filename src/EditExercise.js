@@ -52,12 +52,13 @@ const EditExercise = ({
   }
 
   return (
+    <>
     <div id="EditExercise" className={editVisible}>
       <button id="closeEdit" onClick={()=> hideEdit()}>X</button>
       {/* <p>{formName}</p>
       <p>{formCategories}</p> */}
       <form id="editExerciseForm" onSubmit={submitEdit}>
-        <p id="edit-form-title">Edit exercise:</p>
+        <p id="edit-form-title">Edit exercise</p>
         
         <div id="editName" className="formField">
           <label htmlFor="editName">name</label>
@@ -77,6 +78,8 @@ const EditExercise = ({
         <input id="editExerciseSubmit" type="submit" value="Confirm Edit" />
       </form>
     </div>
+    <div id="edit-underlay" className={editVisible}></div>
+    </>
   )
 }
 

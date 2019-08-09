@@ -61,7 +61,7 @@
   padding: .5em 1em 1em 1em;
 }
 
-#newExerciseForm label{
+#newExerciseForm label {
   font-size: 1.25em;
   display: block;
 }
@@ -99,7 +99,6 @@
   border-radius: 1.25em;
   color: white;
   background-color: hsl(226, 65%, 55%);
-  
 }
 
 #formCategoriesInput {
