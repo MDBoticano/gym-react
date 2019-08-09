@@ -1,17 +1,27 @@
 import axios from 'axios'
 // const baseURL = '/api/exerciseList'
 const baseURL = 'http://localhost:3001/exerciseList'
+const categoriesURL = 'http://localhost:3001/categoriesList'
 
-/* Read : HTTP GET Request */
+/* Read: HTTP GET Request */
 const getExercises = () => {
   const request = axios.get(baseURL)
   return request.then(response => {
-    console.log('Retreived data from server')
+    console.log('Retrieved Exercises data from server')
     return response.data
   })
 }
 
-/* Create : HTTP POST request */
+/* Read: HTTP GET Request */
+const getCategories = () => {
+  const request = axios.get(categoriesURL)
+  return request.then(response => {
+    console.log('Retrieved Exercise Categories data from server')
+    return response.data
+  })
+}
+
+/* Create: HTTP POST request */
 const createExercise = (newExercise) => {
   const request = axios.post(baseURL, newExercise)
   return request.then(response => {
@@ -35,4 +45,5 @@ const updateExercise = (exerciseID, updatedExercise) => {
 }
 
 
-export default { getExercises, createExercise, deleteExercise, updateExercise } 
+export default { getExercises, getCategories, createExercise, deleteExercise, 
+  updateExercise } 

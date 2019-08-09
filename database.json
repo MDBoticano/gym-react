@@ -90,5 +90,15 @@
         "shoulders"
       ]
     }
+  ],
+  "categoriesList": [
+    "biceps", 
+    "triceps", 
+    "chest", 
+    "back", 
+    "shoulders",
+    "abs", 
+    "legs", 
+    "cardio"
   ]
 }

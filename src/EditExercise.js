@@ -3,15 +3,11 @@ import './EditExercise.css'
 
 const EditExercise = ({ 
     formName, nameHandler, 
-    formCategories, categoriesHandler,
+    formCategories, categoriesList, categoriesHandler,
     resetFormName, resetFormCategories,
     editVisible, hideEdit,
     submitEdit 
   }) => {
-
-  const allCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
-   "abs", "legs", "cardio"].sort()
-
 
   /* convert categories array into chips */
   const mapCategoriesToList = (list) => {
@@ -71,7 +67,7 @@ const EditExercise = ({
         <div id="editCategories" className="formField">
           <label htmlFor="editCategories">categories</label>
           <ul id="editCategoriesList">
-            {mapCategoriesToList(allCategoriesList)}
+            {mapCategoriesToList(categoriesList)}
           </ul>
         </div>
 

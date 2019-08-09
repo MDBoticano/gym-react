@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './AddExercise.css'
 
 const AddExercise = ({ submitExercise, nameHandler, formName, 
-  categoriesHandler, resetFormName }) => {
+  categoriesList, categoriesHandler, resetFormName }) => {
 
   const formVisibleText = 'X'
   const formInvisibleText = '+'
@@ -10,9 +10,6 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
   const [formIsVisible, setFormIsVisible] = useState(false)
   const [formToggleText, setFormToggleText] = useState(formInvisibleText)
   const [addList, setAddList] = useState([])
-
-  const formCategoriesList = ["biceps", "triceps", "chest", "back", "shoulders",
-   "abs", "legs", "cardio"].sort()
 
   const toggleForm = () => {
     if (!formIsVisible) {
@@ -117,7 +114,7 @@ const AddExercise = ({ submitExercise, nameHandler, formName,
             value={setCategoriesValue()}
           />
           <ul id="formCategoriesList">
-            {mapCategoriesToList(formCategoriesList)}
+            {mapCategoriesToList(categoriesList)}
           </ul>
         </div>
         <input id="newExerciseSubmit" type="submit" value="Submit"/>

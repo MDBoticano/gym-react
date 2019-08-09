@@ -14,8 +14,9 @@ const App = () => {
   const [filterTerm, setFilterTerm] = useState('')
   const [filterTypes, setFilterTypes] = useState(defaultFilterTypes)
   const [exerciseList, setExerciseList] = useState([])
+  const [categoriesList, setCategoriesList] = useState([])
 
-  /* From form */
+  /* For form */
   const [formName, setFormName] = useState('')
   const [formCategories, setFormCategories] = useState('')
 
@@ -31,6 +32,12 @@ const App = () => {
       .getExercises()
       .then((retreievedExercises) => {
         setExerciseList(retreievedExercises)
+      })
+    
+    exerciseService
+      .getCategories()
+      .then((retreievedCategories) => {
+        setCategoriesList(retreievedCategories)
       })
   }, [])
 
@@ -198,6 +205,7 @@ const App = () => {
       />
       <AddExercise
         submitExercise={submitExercise}
+        categoriesList={categoriesList}
         formName={formName} nameHandler={nameHandler}
         categoriesHandler={categoriesHandler}
         resetFormName={resetFormName}
@@ -205,6 +213,7 @@ const App = () => {
       <EditExercise 
         submitEdit={submitEdit}
         formName={editName} nameHandler={editNameHandler}
+        categoriesList={categoriesList}
         formCategories={editCategories} 
         categoriesHandler={editCategoriesHandler}
         editVisible={editVisible} hideEdit={hideEdit}
