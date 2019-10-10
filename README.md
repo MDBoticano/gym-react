@@ -1,3 +1,8 @@
+# Gym React
+A basic CRUD app except geared towards gymming. This repo is meant for just the front-end. For the backend, see [gym-react-backend](https://github.com/MDBoticano/gym-react-backend).
+
+----
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
