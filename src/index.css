@@ -1,13 +1,25 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  max-width: 414px;
+  min-height: 100vh;
+
+  display: flex;
+
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: solid 1px black;
+}
+
+.Exercises {
+  flex: 1;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+  /* background-color: blue; */
 }
