@@ -57,6 +57,7 @@ const Card = (props) => {
     <StyledCard attribute={props.style}>
       <CardTitle title={props.title} />
       <CardDescription description={props.description} />
+      {props.children}
     </StyledCard>
   );
 }
