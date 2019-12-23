@@ -10,9 +10,11 @@ const StyledCardTitle = styled.p`
 `
 
 const StyledCard = styled.div`
-
+  margin: 0.5rem 0;
   padding: 1rem;
   border-radius: 0.5rem;
+
+  background-color: white;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 
   &:hover {
