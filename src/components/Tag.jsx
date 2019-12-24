@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 
 const Button = styled.button`
   border: solid 1px hsl(0, 0%, 59%);
-  padding: calc(0.25rem + 1px) 0.5rem;
+  padding: 0.25rem 0.5rem;
 
   border-radius: 0.25rem;
 
   background-color: white;
 
-  font-size: 1rem;
+  font-size: ${props => props.theme.fontSize.s};
   line-height: 1.25rem;
   color: hsl(0, 0%, 59%);
 
@@ -19,8 +19,9 @@ const Button = styled.button`
 `;
 
 const Tag = (props) => {
+  const themeContext = useContext(ThemeContext);
   return (
-    <Button className="Tag">
+    <Button className="Tag" theme={themeContext}>
       {props.label}
     </Button>
   );

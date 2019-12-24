@@ -5,10 +5,9 @@ import Exercises from './components/Exercises';
 import Card from './components/Card';
 import TagsRow from './components/TagsRow';
 
+import Theme from './Theme';
+
 import DummyExercises from './data/DummyExercises';
-
-
-
 
 const listExercises = (exercises) => {
   const cards = exercises.map(exercise => {
@@ -25,12 +24,14 @@ const listExercises = (exercises) => {
 
 const App = () => {
   return (
-    <div className="App">
-      <Exercises>
-        {DummyExercises && listExercises(DummyExercises)}
-      </Exercises>
-      <Navigation />
-    </div>
+    <Theme>
+      <div className="App">
+        <Exercises>
+          {DummyExercises && listExercises(DummyExercises)}
+        </Exercises>
+        <Navigation />
+      </div>
+    </Theme>
   );
 };
 

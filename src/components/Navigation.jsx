@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 
 const StyledNavItem = styled.div`
   margin: 0;
@@ -8,33 +8,22 @@ const StyledNavItem = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
 
-  .NavItem__icon {
-    margin: 0;
-    padding: 0;
-    height: 44px;
-  }
+const NavItemIcon = styled.img`
+  margin: 0;
+  padding: 0;
+  height: 44px;
+`;
 
-  .NavItem__label {
-    margin: 0;
-    padding: 0;
+const NavItemLabel = styled.p`
+  margin: 0;
+  padding: 0;
 
-    font-family: 'SF Pro Text';
-    font-size: .75rem;
-    line-height: 1rem;
-  }
-`
-
-const NavItem = ({ src, label }) => {
-  console.log(src);
-  return (
-    <StyledNavItem className="NavItem" onClick={()=> console.log('click')}>
-      <img className="NavItem__icon" src={src} alt={label} />
-      <p className="NavItem__label">{label}</p>
-    </StyledNavItem>
-  );
-}
-
+  font-family: ${props => props.theme.fonts.standard};
+  font-size: ${props => props.theme.fontSize.s};
+  line-height: 1rem;
+`;
 
 const StyledNavigation = styled.div`
   height: 4.5rem;
@@ -48,12 +37,21 @@ const StyledNavigation = styled.div`
   position: fixed;
   bottom: 0;
   width: 414px;
-`
+`;
 
+const NavItem = ({ src, label }) => {
+  return (
+    <StyledNavItem >
+      <NavItemIcon src={src} alt={label} />
+      <NavItemLabel>{label}</NavItemLabel>
+    </StyledNavItem>
+  );
+};
 
 const Navigation = () => {
+  const themeContext = useContext(ThemeContext);
   return (
-    <StyledNavigation>
+    <StyledNavigation theme={themeContext} >
       <NavItem
         src="images/Exercises.svg"
         label="exercises"
