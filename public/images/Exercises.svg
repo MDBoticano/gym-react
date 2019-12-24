@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Icon/Navigation/Exercises</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/Navigation/Exercises" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Exercise" transform="translate(48.000000, 48.000000) rotate(-45.000000) translate(-48.000000, -48.000000) translate(14.000000, 30.000000)" fill="#939393">
+            <rect id="Rectangle" x="20" y="14" width="28" height="8"></rect>
+            <path d="M64,14 L66,14 C67.1045695,14 68,14.8954305 68,16 L68,20 C68,21.1045695 67.1045695,22 66,22 L64,22 L64,22 L64,14 Z" id="Rectangle-Copy-2"></path>
+            <path d="M2,14 L4,14 L4,14 L4,22 L2,22 C0.8954305,22 1.3527075e-16,21.1045695 0,20 L0,16 C-1.3527075e-16,14.8954305 0.8954305,14 2,14 Z" id="Rectangle-Copy-3"></path>
+            <rect id="Rectangle-Copy" x="50" y="0" width="12" height="36" rx="4"></rect>
+            <rect id="Rectangle-Copy-4" x="6" y="0" width="12" height="36" rx="4"></rect>
+        </g>
+    </g>
+</svg>

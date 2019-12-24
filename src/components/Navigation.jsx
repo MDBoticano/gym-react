@@ -19,6 +19,7 @@ const StyledNavItem = styled.div`
     margin: 0;
     padding: 0;
 
+    font-family: 'SF Pro Text';
     font-size: .75rem;
     line-height: 1rem;
   }
@@ -43,6 +44,10 @@ const StyledNavigation = styled.div`
 
   background-color: white;
   box-shadow: 0px -2px 4px rgba(0,0,0, 0.5);
+
+  position: fixed;
+  bottom: 0;
+  width: 414px;
 `
 
 
@@ -50,8 +55,16 @@ const Navigation = () => {
   return (
     <StyledNavigation>
       <NavItem
+        src="images/Exercises.svg"
+        label="exercises"
+      />
+      <NavItem
         src="images/Workouts.svg"
         label="workouts"
+      />
+      <NavItem
+        src="images/Profile.svg"
+        label="profile"
       />
     </StyledNavigation>
   );

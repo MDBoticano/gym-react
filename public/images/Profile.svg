@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Icon/Navigation/Profile</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/Navigation/Profile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M48,58 C63.463973,58 76,66.954305 76,78 L76,78 L20,78 L20.0037512,77.6692634 C20.2510133,66.7761143 32.6906667,58 48,58 Z" id="Combined-Shape" fill="#939393"></path>
+        <circle id="Oval" fill="#939393" cx="48" cy="36" r="18"></circle>
+    </g>
+</svg>

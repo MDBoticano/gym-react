@@ -41,7 +41,14 @@ const DummyExercises = [
     "name": "Crunch",
     "description" : "An approved crunch begins with you lying down, one knee bent, and hands positioned beneath your lower back for support. Gently lift your head and shoulders, hold briefly and relax back down.",
     "tags" : [
-      "Traps"
+      "Abs"
+    ],
+  }, {
+    "id": 7,
+    "name": "Russian Twist",
+    "description" : "The Russian twist is a type of exercise that is used to work the abdominal muscles by performing a twisting motion on the abdomen.",
+    "tags" : [
+      "Abs"
     ],
   }, 
 ];

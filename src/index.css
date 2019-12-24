@@ -5,7 +5,7 @@ body {
 
 .App {
   max-width: 414px;
-  min-height: 100vh;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -20,8 +20,14 @@ body {
 }
 
 .Exercises {
+  margin: 0;
+  padding: 0;
+
   flex: 1;
 
   padding-left: 1rem;
   padding-right: 1rem;
+  margin-bottom: 4.5rem;
+
+  overflow: auto;
 }
