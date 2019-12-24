@@ -8,6 +8,10 @@ const StyledTag = styled.button`
   border-radius: 0.25rem;
 
   background-color: white;
+
+  &:not(first-child) {
+    margin-right: 0.25rem;
+  }
 `
 
 const StyledTagText = styled.p`
