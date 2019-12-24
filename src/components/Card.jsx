@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 
 const StyledCard = styled.div`
   margin: 0.5rem 0;
@@ -17,8 +17,8 @@ const StyledCard = styled.div`
 const CardTitle = styled.p`
   margin: 0;
 
-  font-family: 'SF Pro Display';
-  font-size: 1.5rem;
+  font-family: ${props => props.theme.fonts.standard};
+  font-size: ${props => props.theme.fontSize.xl};
   line-height: 1.75rem;
 `;
 
@@ -30,17 +30,17 @@ const CardDescription = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  font-family: 'SF Pro Text';
+  font-family: ${props => props.theme.fonts.standard};
+  font-size: ${props => props.theme.fontSize.m};
   line-height: 1.25rem;
-  font-size: 1rem;
-
 
   color: gray;
 `;
 
 const Card = (props) => {
+  const theme = useContext(ThemeContext);
   return (
-    <StyledCard>
+    <StyledCard theme={theme}>
       <CardTitle>{props.title}</CardTitle>
       <CardDescription>{props.description}</CardDescription>
       {props.children}
