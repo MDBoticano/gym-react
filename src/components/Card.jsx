@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
+import TagsRow from './TagsRow';
+
 const StyledCard = styled.div`
   margin: 0.5rem 0;
   padding: 1rem;
@@ -43,7 +45,7 @@ const Card = (props) => {
     <StyledCard theme={theme}>
       <CardTitle>{props.title}</CardTitle>
       <CardDescription>{props.description}</CardDescription>
-      {props.children}
+      <TagsRow tags={props.tags} />
     </StyledCard>
   );
 };
