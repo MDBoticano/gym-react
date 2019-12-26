@@ -22,8 +22,8 @@ const theme = {
   }
 }
 
-const Theme = ({ children }) => (
+const ThemeContext = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 
-export default Theme;
+export default ThemeContext;

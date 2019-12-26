@@ -5,7 +5,7 @@ import Exercises from './components/Exercises';
 import Card from './components/Card';
 import TagsRow from './components/TagsRow';
 
-import Theme from './Theme';
+import ThemeContext from './ThemeContext';
 
 import DummyExercises from './data/DummyExercises';
 
@@ -24,14 +24,14 @@ const listExercises = (exercises) => {
 
 const App = () => {
   return (
-    <Theme>
+    <ThemeContext>
       <div className="App">
         <Exercises>
           {DummyExercises && listExercises(DummyExercises)}
         </Exercises>
         <Navigation />
       </div>
-    </Theme>
+    </ThemeContext>
   );
 };
 

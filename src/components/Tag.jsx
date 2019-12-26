@@ -19,9 +19,9 @@ const Button = styled.button`
 `;
 
 const Tag = (props) => {
-  const themeContext = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   return (
-    <Button className="Tag" theme={themeContext}>
+    <Button className="Tag" theme={theme}>
       {props.label}
     </Button>
   );

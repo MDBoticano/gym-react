@@ -49,9 +49,9 @@ const NavItem = ({ src, label }) => {
 };
 
 const Navigation = () => {
-  const themeContext = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   return (
-    <StyledNavigation theme={themeContext} >
+    <StyledNavigation theme={theme} >
       <NavItem
         src="images/Exercises.svg"
         label="exercises"

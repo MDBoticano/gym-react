@@ -38,9 +38,9 @@ const CardDescription = styled.p`
 `;
 
 const Card = (props) => {
-  const themeContext = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   return (
-    <StyledCard theme={themeContext}>
+    <StyledCard theme={theme}>
       <CardTitle>{props.title}</CardTitle>
       <CardDescription>{props.description}</CardDescription>
       {props.children}
