@@ -10,6 +10,8 @@ const Exercises = () => {
   const [activeExercises, setActiveExercises] = useState([]);
 
   const listExercises = (exercises) => {
+    // console.log('making list of exercises:', exercises);
+
     const cards = exercises.map((exercise) => {
       const { id, name, description, tags } = exercise;
   
@@ -29,7 +31,7 @@ const Exercises = () => {
   return (
     <div className="Exercises">
       <header>
-        <ExercisesSearch data={exercises} setter={setActiveExercises} />
+        <ExercisesSearch data={exercises} setActiveData={setActiveExercises} />
       </header>
       {activeExercises && listExercises(activeExercises)}
     </div>
