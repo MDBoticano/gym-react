@@ -29,7 +29,7 @@ export const filterData = (unfilteredData, queryText, fields, callBack) => {
 
   // Base case: no query
   if (queryText === '') {
-    return unfilteredData;
+    callBack(unfilteredData);
   }
 
   // Loop through the data and filter it
