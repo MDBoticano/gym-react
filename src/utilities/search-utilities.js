@@ -1,5 +1,3 @@
-import { debounce } from 'lodash'; //implement yourself later
-
 // Step 1: Get the fields you'll actually be searching
 const getSearchableFields = (fields) => {
   // console.log('getting searchable fields');
@@ -20,33 +18,11 @@ const searchItem = (item, queryText, fields) => {
       fieldValue = fieldValue.join(',');
     }
 
-    return fieldValue.includes(queryText);
+    return (fieldValue.toLowerCase()).includes(queryText.toLowerCase());
   });
 
   return isAMatch;
 }
-
-export const debouncedFilterData = debounce((unfilteredData, queryText, fields, callBack) => {
-  console.log('Debounce filtering data:', queryText);
-
-  // Base case: no query
-  if (queryText === '') {
-    return unfilteredData;
-  }
-
-  // Loop through the data and filter it
-  
-  // Step 1: reduce fields object into just fields that can be searched
-  const searchableFields = getSearchableFields(fields);
-
-  const filteredData = unfilteredData.filter((entry) => {
-    return searchItem(entry, queryText, searchableFields);
-  });
-
-  console.log(filteredData);
-  // return filteredData;
-  callBack(filteredData);
-}, 1000);
 
 export const filterData = (unfilteredData, queryText, fields, callBack) => {
   console.log('Filtering data:', queryText);

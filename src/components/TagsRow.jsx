@@ -9,14 +9,11 @@ const StyledRow = styled.div`
 `
 
 const TagsRow = ({ tags }) => {
-  const listTags = (tags) => {
-    const allTags = tags.map(tag => <Tag label={tag} key={tag} />);
-    return allTags;
-  };
+  const tagsList = tags.map((tag) => <Tag label={tag} key={tag} />);
 
   return (
     <StyledRow className="tags-row">
-      {listTags(tags)}
+      {tagsList}
     </StyledRow>
   );
 };
