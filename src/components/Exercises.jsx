@@ -5,7 +5,55 @@ import Card from './Card';
 
 import DummyExercises from '../data/DummyExercises';
 
+import debounce from 'lodash.debounce'; //implement yourself later
+import { filterData } from '../utilities/search-utilities';
+
+import { SearchProvider } from './SearchContext';
 import styled, { ThemeContext } from 'styled-components';
+
+// Debounce delay in miliseconds
+const DEBOUNCE_TIME = 500;
+const DEBOUNCE_OPTIONS = {};
+const debouncedFilter = debounce((...args) => filterData(...args),
+  DEBOUNCE_TIME, DEBOUNCE_OPTIONS
+);
+
+const Exercises = () => {
+  const exercises = DummyExercises;
+  const [activeExercises, setActiveExercises] = useState([]);
+  const [queryText, setQueryText] = useState('');
+  const [queryables] = useState({
+    name: true,
+    description: false,
+    tags: true,
+  });
+
+  useEffect(() => {
+    debouncedFilter(exercises, queryText, queryables, setActiveExercises);
+  }, [exercises, queryText, queryables]);
+
+  const cardsList = activeExercises.map((exercise) => (
+    <Card className="Card" exercise={exercise} key={exercise.id} />
+  ));
+
+  const theme = useContext(ThemeContext);
+  const searchContext = { setQuery: setQueryText };
+
+  return (
+    <SearchProvider value={searchContext}>
+      <StyledExercises theme={theme}>
+        <StyledHeader>
+          <p className="page-title">Exercises</p>
+          <ExercisesSearch query={queryText} setQuery={setQueryText} />
+        </StyledHeader>
+        <StyledList className="ExercisesList">
+          {cardsList}
+        </StyledList>
+      </StyledExercises>
+    </SearchProvider>
+  );
+}
+
 
 const StyledExercises = styled.div`
   max-height: 100vh;
@@ -48,31 +96,5 @@ const StyledList = styled.div`
   overflow: auto;
 `
 
-const Exercises = () => {
-  const exercises = DummyExercises;
-  const [activeExercises, setActiveExercises] = useState([]);
-
-  useEffect(() => {
-    setActiveExercises(exercises);
-  }, [exercises]);
-
-  const cardsList = activeExercises.map((exercise) => (
-    <Card className="Card" exercise={exercise} key={exercise.id} />
-  ));
-
-  const theme = useContext(ThemeContext);
-
-  return (
-    <StyledExercises theme={theme}>
-      <StyledHeader>
-        <p className="page-title">Exercises</p>
-        <ExercisesSearch data={exercises} setActiveData={setActiveExercises} />
-      </StyledHeader>
-      <StyledList className="ExercisesList">
-        {cardsList}
-      </StyledList>
-    </StyledExercises>
-  );
-}
 
 export default Exercises;

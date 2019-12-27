@@ -18,7 +18,27 @@ const searchItem = (item, queryText, fields) => {
       fieldValue = fieldValue.join(',');
     }
 
-    return (fieldValue.toLowerCase()).includes(queryText.toLowerCase());
+    // Handle multiple queries: OR
+    const splitChar = ","; // character to specify different queries
+    if (queryText.includes(splitChar)) {
+      // Remove spaces before and after a comma, but not between queries
+      const formattedQueryText = queryText.replace(/\s*,\s*/g, ",");
+
+      const queries = formattedQueryText.split(splitChar);
+      // console.log('queryable:', queries);
+
+      const hasAMatch = queries.some((query) => {
+        const match = (fieldValue.toLowerCase()).includes(query.toLowerCase());
+        // console.log(query, 'in', fieldValue, ':', match);
+        return match;
+      });
+
+      // console.log('queryables match:', hasAMatch);
+
+      return hasAMatch;
+    } else {
+      return (fieldValue.toLowerCase()).includes(queryText.toLowerCase());
+    }    
   });
 
   return isAMatch;

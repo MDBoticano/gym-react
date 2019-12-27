@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+// import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import debounce from 'lodash.debounce'; //implement yourself later
+// import debounce from 'lodash.debounce'; //implement yourself later
 
-import { filterData } from '../utilities/search-utilities';
+// import { filterData } from '../utilities/search-utilities';
 
 import styled, { ThemeContext } from 'styled-components';
 
@@ -41,28 +42,28 @@ const StyledSearch = styled.div`
 `;
 
 // Debounce delay in miliseconds
-const DEBOUNCE_TIME = 900;
+// const DEBOUNCE_TIME = 900;
 
-const debouncedFilter = debounce((
-  data, queryValue, queryables, setActiveData
-) => filterData(data, queryValue, queryables, setActiveData), DEBOUNCE_TIME);
+// const debouncedFilter = debounce((
+//   data, queryValue, queryables, setActiveData
+// ) => filterData(data, queryValue, queryables, setActiveData), DEBOUNCE_TIME);
 
-const ExercisesSearch = ({ data, setActiveData }) => {
+const ExercisesSearch = ({ query, setQuery }) => {
 
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
 
-  const [queryables] = useState({
-    name: true,
-    description: false,
-    tags: true,
-  });
+  // const [queryables] = useState({
+  //   name: true,
+  //   description: false,
+  //   tags: true,
+  // });
 
-  const handleChange = (event) => {
-    const queryValue = event.target.value;
+  // const handleChange = (event) => {
+  //   const queryValue = event.target.value;
 
-    setQuery(queryValue);
-    debouncedFilter(data, queryValue, queryables, setActiveData);
-  }
+  //   setQuery(queryValue);
+  //   debouncedFilter(data, queryValue, queryables, setActiveData);
+  // }
 
   const theme = useContext(ThemeContext);
 
@@ -72,7 +73,7 @@ const ExercisesSearch = ({ data, setActiveData }) => {
         type="text"
         value={query}
         placeholder={"Search"}
-        onChange={(event) => handleChange(event)}
+        onChange={(event) => setQuery(event.target.value)}
       />
     </StyledSearch>
   );
