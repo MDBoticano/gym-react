@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import ExercisesSearch from './ExercisesSearch';
 import Card from './Card';
 
-const Exercises = ({ exercises }) => {
+import DummyExercises from '../data/DummyExercises';
+
+const Exercises = () => {
+  const exercises = DummyExercises;
+  const [activeExercises, setActiveExercises] = useState([]);
+
   const listExercises = (exercises) => {
-    const cards = exercises.map(exercise => {
+    const cards = exercises.map((exercise) => {
       const { id, name, description, tags } = exercise;
   
       return (
@@ -16,14 +23,17 @@ const Exercises = ({ exercises }) => {
         />
       );
     });
-    return <>{cards}</>
+    return <div className="ExercisesList">{cards}</div>
   };
 
   return (
     <div className="Exercises">
-      {exercises && listExercises(exercises)}
+      <header>
+        <ExercisesSearch data={exercises} setter={setActiveExercises} />
+      </header>
+      {activeExercises && listExercises(activeExercises)}
     </div>
   );
 }
 
-export default Exercises
+export default Exercises;
