@@ -26,8 +26,8 @@ const searchItem = (item, queryText, fields) => {
   return isAMatch;
 }
 
-export const filterData = debounce((unfilteredData, queryText, fields, callBack) => {
-  console.log('Filtering data:', queryText);
+export const debouncedFilterData = debounce((unfilteredData, queryText, fields, callBack) => {
+  console.log('Debounce filtering data:', queryText);
 
   // Base case: no query
   if (queryText === '') {
@@ -47,3 +47,25 @@ export const filterData = debounce((unfilteredData, queryText, fields, callBack)
   // return filteredData;
   callBack(filteredData);
 }, 1000);
+
+export const filterData = (unfilteredData, queryText, fields, callBack) => {
+  console.log('Filtering data:', queryText);
+
+  // Base case: no query
+  if (queryText === '') {
+    return unfilteredData;
+  }
+
+  // Loop through the data and filter it
+  
+  // Step 1: reduce fields object into just fields that can be searched
+  const searchableFields = getSearchableFields(fields);
+
+  const filteredData = unfilteredData.filter((entry) => {
+    return searchItem(entry, queryText, searchableFields);
+  });
+
+  console.log(filteredData);
+  // return filteredData;
+  callBack(filteredData);
+};

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-// import { debounce } from 'lodash'; //implement yourself later
+import { debounce } from 'lodash'; //implement yourself later
 
 import { filterData } from '../utilities/search-utilities';
 
@@ -14,7 +14,9 @@ const StyledSearch = styled.div`
   background-color: white;
 `;
 
-
+const debouncedFilter = debounce((
+  data, queryValue, queryables, setActiveData
+) => filterData(data, queryValue, queryables, setActiveData), 1000);
 
 const ExercisesSearch = ({ data, setActiveData }) => {
 
@@ -30,11 +32,7 @@ const ExercisesSearch = ({ data, setActiveData }) => {
     const queryValue = event.target.value;
 
     setQuery(queryValue);
-
-    filterData(data, queryValue, queryables, setActiveData);
-
-
-    // setActiveData(filteredData);
+    debouncedFilter(data, queryValue, queryables, setActiveData);
   }
 
   return (
