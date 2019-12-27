@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import ExercisesSearch from './ExercisesSearch';
 import Card from './Card';
@@ -51,6 +51,10 @@ const StyledList = styled.div`
 const Exercises = () => {
   const exercises = DummyExercises;
   const [activeExercises, setActiveExercises] = useState([]);
+
+  useEffect(() => {
+    setActiveExercises(exercises);
+  }, [exercises]);
 
   const cardsList = activeExercises.map((exercise) => (
     <Card className="Card" exercise={exercise} key={exercise.id} />
