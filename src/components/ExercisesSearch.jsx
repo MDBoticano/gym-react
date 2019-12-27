@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { debounce } from 'lodash'; //implement yourself later
+import debounce from 'lodash.debounce'; //implement yourself later
 
 import { filterData } from '../utilities/search-utilities';
 
@@ -14,9 +14,12 @@ const StyledSearch = styled.div`
   background-color: white;
 `;
 
+// Debounce delay in miliseconds
+const DEBOUNCE_TIME = 900;
+
 const debouncedFilter = debounce((
   data, queryValue, queryables, setActiveData
-) => filterData(data, queryValue, queryables, setActiveData), 1000);
+) => filterData(data, queryValue, queryables, setActiveData), DEBOUNCE_TIME);
 
 const ExercisesSearch = ({ data, setActiveData }) => {
 

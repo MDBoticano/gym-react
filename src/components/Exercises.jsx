@@ -9,30 +9,18 @@ const Exercises = () => {
   const exercises = DummyExercises;
   const [activeExercises, setActiveExercises] = useState([]);
 
-  const listExercises = (exercises) => {
-    // console.log('making list of exercises:', exercises);
-    const cards = exercises.map((exercise) => {
-      const { id, name, description, tags } = exercise;
-  
-      return (
-        <Card
-          className="Card"
-          title={name}
-          description={description} 
-          tags={tags}
-          key={id}
-        />
-      );
-    });
-    return <div className="ExercisesList">{cards}</div>
-  };
+  const cardsList = activeExercises.map((exercise) => (
+    <Card className="Card" exercise={exercise} key={exercise.id} />
+  ));
 
   return (
     <div className="Exercises">
       <header>
         <ExercisesSearch data={exercises} setActiveData={setActiveExercises} />
       </header>
-      {activeExercises && listExercises(activeExercises)}
+      <div className="ExercisesList">
+        {cardsList}
+      </div>
     </div>
   );
 }

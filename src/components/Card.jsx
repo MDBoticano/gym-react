@@ -41,11 +41,12 @@ const CardDescription = styled.p`
 
 const Card = (props) => {
   const theme = useContext(ThemeContext);
+  const { name, description, tags } = props.exercise;
   return (
     <StyledCard theme={theme}>
-      <CardTitle>{props.title}</CardTitle>
-      <CardDescription>{props.description}</CardDescription>
-      <TagsRow tags={props.tags} />
+      <CardTitle>{name}</CardTitle>
+      <CardDescription>{description}</CardDescription>
+      <TagsRow tags={tags} />
     </StyledCard>
   );
 };
