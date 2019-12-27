@@ -11,7 +11,6 @@ const Exercises = () => {
 
   const listExercises = (exercises) => {
     // console.log('making list of exercises:', exercises);
-
     const cards = exercises.map((exercise) => {
       const { id, name, description, tags } = exercise;
   

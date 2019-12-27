@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { debounce } from 'lodash'; //implement yourself later
+// import { debounce } from 'lodash'; //implement yourself later
+
+import { filterData } from '../utilities/search-utilities';
+
 
 const StyledSearch = styled.div`
   margin: 0;
@@ -12,7 +15,9 @@ const StyledSearch = styled.div`
 `;
 
 
+
 const ExercisesSearch = ({ data, setActiveData }) => {
+
   const [query, setQuery] = useState('');
 
   const [queryables] = useState({
@@ -21,65 +26,24 @@ const ExercisesSearch = ({ data, setActiveData }) => {
     tags: true,
   });
 
-  const filterActiveData = (query) => {
-    console.log('filtering...');
-    if (query === '') {
-      console.log('empty query, showing all');
-      setActiveData(data);
-    }
-    else { 
-      console.log(`searching for ${query}...`);
-      const activeData = [];
+  const handleChange = (event) => {
+    const queryValue = event.target.value;
 
-      data.forEach((item) => {
-        Object.keys(queryables).some((objKey) => {
-          if (queryables[objKey]) { 
-            const itemKeyVal = item[objKey];
-            let searchString = '';
+    setQuery(queryValue);
 
-            if (typeof itemKeyVal === "string") {
-              searchString = itemKeyVal.toLowerCase();
-            } else if (Array.isArray(itemKeyVal)) {
-              searchString = itemKeyVal.join(',').toLowerCase();
-            }
+    filterData(data, queryValue, queryables, setActiveData);
 
-            if (searchString.includes(query.toLowerCase())) {
-              activeData.push(item);
-              return true; // breaks the some loop
-            }
-          }
-          return false;
-        });
-      });
 
-      setActiveData(activeData);
-    }
+    // setActiveData(filteredData);
   }
-
-  const debounceQueryChange = debounce(
-    () => filterActiveData(query), 
-    2000
-  );
-
-  const handleQueryChange = (event) => {
-    const newQuery = event.target.value;
-    setQuery(newQuery);
-    
-    debounceQueryChange(event);
-  };
-
-
-  // useEffect(() => { 
-  //   filterActiveData();  
-  // }, [query, queryables, data, setActiveData]);
 
   return (
     <StyledSearch className="ExercisesSearch">
-      <input
+       <input
         type="text"
         value={query}
         placeholder={"search"}
-        onChange={(e) => handleQueryChange(e)}
+        onChange={(e) => handleChange(e)}
       />
     </StyledSearch>
   );
