@@ -5,7 +5,52 @@ import Card from './Card';
 
 import DummyExercises from '../data/DummyExercises';
 
+import debounce from 'lodash.debounce'; //implement yourself later
+import { filterData } from '../utilities/search-utilities';
+
+
 import styled, { ThemeContext } from 'styled-components';
+
+// Debounce delay in miliseconds
+const DEBOUNCE_TIME = 900;
+
+const debouncedFilter = debounce((
+  data, queryValue, queryables, setActiveData
+) => filterData(data, queryValue, queryables, setActiveData), DEBOUNCE_TIME);
+
+const Exercises = () => {
+  const exercises = DummyExercises;
+  const [activeExercises, setActiveExercises] = useState([]);
+  const [queryText, setQueryText] = useState('');
+  const [queryables] = useState({
+    name: true,
+    description: false,
+    tags: true,
+  });
+
+  useEffect(() => {
+    debouncedFilter(exercises, queryText, queryables, setActiveExercises);
+  }, [exercises, queryText, queryables]);
+
+  const cardsList = activeExercises.map((exercise) => (
+    <Card className="Card" exercise={exercise} key={exercise.id} />
+  ));
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <StyledExercises theme={theme}>
+      <StyledHeader>
+        <p className="page-title">Exercises</p>
+        <ExercisesSearch query={queryText} setQuery={setQueryText} />
+      </StyledHeader>
+      <StyledList className="ExercisesList">
+        {cardsList}
+      </StyledList>
+    </StyledExercises>
+  );
+}
+
 
 const StyledExercises = styled.div`
   max-height: 100vh;
@@ -48,31 +93,5 @@ const StyledList = styled.div`
   overflow: auto;
 `
 
-const Exercises = () => {
-  const exercises = DummyExercises;
-  const [activeExercises, setActiveExercises] = useState([]);
-
-  useEffect(() => {
-    setActiveExercises(exercises);
-  }, [exercises]);
-
-  const cardsList = activeExercises.map((exercise) => (
-    <Card className="Card" exercise={exercise} key={exercise.id} />
-  ));
-
-  const theme = useContext(ThemeContext);
-
-  return (
-    <StyledExercises theme={theme}>
-      <StyledHeader>
-        <p className="page-title">Exercises</p>
-        <ExercisesSearch data={exercises} setActiveData={setActiveExercises} />
-      </StyledHeader>
-      <StyledList className="ExercisesList">
-        {cardsList}
-      </StyledList>
-    </StyledExercises>
-  );
-}
 
 export default Exercises;
