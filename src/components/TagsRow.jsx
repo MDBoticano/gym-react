@@ -8,8 +8,10 @@ const StyledRow = styled.div`
   overflow: hidden;
 `
 
-const TagsRow = ({ tags }) => {
-  const tagsList = tags.map((tag) => <Tag label={tag} key={tag} />);
+const TagsRow = ({ tags, callback }) => {
+  const tagsList = tags.map((tag) => (
+    <Tag label={tag} key={tag} callback={callback} />
+  ));
 
   return (
     <StyledRow className="tags-row">

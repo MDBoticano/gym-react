@@ -42,11 +42,12 @@ const CardDescription = styled.p`
 const Card = (props) => {
   const theme = useContext(ThemeContext);
   const { name, description, tags } = props.exercise;
+  const setQueryText = props.setQueryText;
   return (
     <StyledCard theme={theme}>
       <CardTitle>{name}</CardTitle>
       <CardDescription>{description}</CardDescription>
-      <TagsRow tags={tags} />
+      <TagsRow tags={tags} callback={setQueryText} />
     </StyledCard>
   );
 };

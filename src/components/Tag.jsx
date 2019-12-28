@@ -20,9 +20,10 @@ const Button = styled.button`
 
 const Tag = (props) => {
   const theme = useContext(ThemeContext);
+  const { label, callback } = props;
   return (
-    <Button className="Tag" theme={theme}>
-      {props.label}
+    <Button className="Tag" theme={theme} onClick={() => callback(label)}>
+      {label}
     </Button>
   );
 };

@@ -47,9 +47,9 @@ const debouncedFilter = debounce((
   data, queryValue, queryables, setActiveData
 ) => filterData(data, queryValue, queryables, setActiveData), DEBOUNCE_TIME);
 
-const ExercisesSearch = ({ data, setActiveData }) => {
+const ExercisesSearch = ({ data, setActiveData, queryText, setQueryText }) => {
 
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState(''); // lift state up
 
   const [queryables] = useState({
     name: true,
@@ -58,9 +58,11 @@ const ExercisesSearch = ({ data, setActiveData }) => {
   });
 
   const handleChange = (event) => {
+    console.log('Search input change');
+
     const queryValue = event.target.value;
 
-    setQuery(queryValue);
+    setQueryText(queryValue);
     debouncedFilter(data, queryValue, queryables, setActiveData);
   }
 
@@ -70,7 +72,7 @@ const ExercisesSearch = ({ data, setActiveData }) => {
     <StyledSearch className="ExercisesSearch" theme={theme}>
        <input
         type="text"
-        value={query}
+        value={queryText}
         placeholder={"Search"}
         onChange={(event) => handleChange(event)}
       />

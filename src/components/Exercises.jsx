@@ -51,13 +51,19 @@ const StyledList = styled.div`
 const Exercises = () => {
   const exercises = DummyExercises;
   const [activeExercises, setActiveExercises] = useState([]);
+  const [queryText, setQueryText] = useState('');
 
   useEffect(() => {
     setActiveExercises(exercises);
   }, [exercises]);
 
   const cardsList = activeExercises.map((exercise) => (
-    <Card className="Card" exercise={exercise} key={exercise.id} />
+    <Card 
+      className="Card"
+      key={exercise.id} 
+      exercise={exercise}
+      setQueryText={setQueryText}
+    />
   ));
 
   const theme = useContext(ThemeContext);
@@ -66,7 +72,12 @@ const Exercises = () => {
     <StyledExercises theme={theme}>
       <StyledHeader>
         <p className="page-title">Exercises</p>
-        <ExercisesSearch data={exercises} setActiveData={setActiveExercises} />
+        <ExercisesSearch
+          data={exercises}
+          setActiveData={setActiveExercises}
+          queryText={queryText}
+          setQueryText={setQueryText}
+        />
       </StyledHeader>
       <StyledList className="ExercisesList">
         {cardsList}
