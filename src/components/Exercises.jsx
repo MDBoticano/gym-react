@@ -8,12 +8,11 @@ import DummyExercises from '../data/DummyExercises';
 import debounce from 'lodash.debounce'; //implement yourself later
 import { filterData } from '../utilities/search-utilities';
 
-
+import { SearchProvider } from './SearchContext';
 import styled, { ThemeContext } from 'styled-components';
 
 // Debounce delay in miliseconds
 const DEBOUNCE_TIME = 900;
-
 const debouncedFilter = debounce((
   data, queryValue, queryables, setActiveData
 ) => filterData(data, queryValue, queryables, setActiveData), DEBOUNCE_TIME);
@@ -37,17 +36,20 @@ const Exercises = () => {
   ));
 
   const theme = useContext(ThemeContext);
+  const searchContext = { setQuery: setQueryText };
 
   return (
-    <StyledExercises theme={theme}>
-      <StyledHeader>
-        <p className="page-title">Exercises</p>
-        <ExercisesSearch query={queryText} setQuery={setQueryText} />
-      </StyledHeader>
-      <StyledList className="ExercisesList">
-        {cardsList}
-      </StyledList>
-    </StyledExercises>
+    <SearchProvider value={searchContext}>
+      <StyledExercises theme={theme}>
+        <StyledHeader>
+          <p className="page-title">Exercises</p>
+          <ExercisesSearch query={queryText} setQuery={setQueryText} />
+        </StyledHeader>
+        <StyledList className="ExercisesList">
+          {cardsList}
+        </StyledList>
+      </StyledExercises>
+    </SearchProvider>
   );
 }
 

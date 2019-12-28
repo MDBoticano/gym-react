@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
+import SearchContext from './SearchContext';
 
 const Button = styled.button`
   border: solid 1px hsl(0, 0%, 59%);
@@ -18,11 +19,12 @@ const Button = styled.button`
   }
 `;
 
-const Tag = (props) => {
+const Tag = ({ label }) => {
   const theme = useContext(ThemeContext);
+  const { setQuery } = useContext(SearchContext);
   return (
-    <Button className="Tag" theme={theme}>
-      {props.label}
+    <Button className="Tag" theme={theme} onClick={() => setQuery(label)}>
+      {label}
     </Button>
   );
 };
