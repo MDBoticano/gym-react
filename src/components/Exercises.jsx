@@ -32,9 +32,28 @@ const Exercises = () => {
     debouncedFilter(exercises, queryText, queryables, setActiveExercises);
   }, [exercises, queryText, queryables]);
 
-  const cardsList = activeExercises.map((exercise) => (
-    <Card className="Card" exercise={exercise} key={exercise.id} />
-  ));
+  const cardsList = (allExercises) => {
+    const loadingCopy = "Retrieving exercises...";
+    const noResultsCopy = "We couldn't find what you were looking for. Try refining your search."
+
+    // Deal with empty cases: while loading & when a search returns nothing
+    if (allExercises.length === 0) {
+      const makeEmptyResultMessage = (query) => {
+        return query === '' ? loadingCopy : noResultsCopy;
+      }
+      return (
+        <StyledEmptyResult>
+          {makeEmptyResultMessage(queryText)}
+        </StyledEmptyResult>
+      );
+    } else {
+      const exerciseCards = allExercises.map((exercise) => (
+        <Card className="Card" exercise={exercise} key={exercise.id} />
+      ));
+
+      return exerciseCards;
+    }
+  }
 
   const theme = useContext(ThemeContext);
   const searchContext = { setQuery: setQueryText };
@@ -47,13 +66,12 @@ const Exercises = () => {
           <ExercisesSearch query={queryText} setQuery={setQueryText} />
         </StyledHeader>
         <StyledList className="ExercisesList">
-          {cardsList}
+          {cardsList(activeExercises)}
         </StyledList>
       </StyledExercises>
     </SearchProvider>
   );
-}
-
+};
 
 const StyledExercises = styled.div`
   max-height: 100vh;
@@ -63,7 +81,7 @@ const StyledExercises = styled.div`
 
   display: flex;
   flex-direction: column;
-`
+`;
 
 const StyledHeader = styled.header`
   margin: 0;
@@ -86,7 +104,7 @@ const StyledHeader = styled.header`
     font-size: ${props => props.theme.fontSize.xxl};
     line-height: 2.5rem;
   }
-`
+`;
 
 const StyledList = styled.div`
   margin: 0;
@@ -94,7 +112,18 @@ const StyledList = styled.div`
   padding: 0 0.5rem;
 
   overflow: auto;
-`
+`;
 
+const StyledEmptyResult = styled.div`
+  margin: 0.5rem 0;
+  padding: 1rem;
+
+  color: hsl(0, 0%, 29%);
+
+  font-family: ${props => props.theme.fonts.standard};
+  font-size: ${props => props.theme.fontSize.l};
+
+  text-align: center;
+`;
 
 export default Exercises;

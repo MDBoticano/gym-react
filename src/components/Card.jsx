@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import TagsRow from './TagsRow';
@@ -14,6 +14,11 @@ const StyledCard = styled.div`
   &:hover {
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
   }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5rem;
+  }
 `;
 
 const CardTitle = styled.p`
@@ -25,12 +30,14 @@ const CardTitle = styled.p`
 `;
 
 const CardDescription = styled.p`
-  margin: 0;
-  margin-top: 5px;
+  visibility: ${props => props.collapsed ? 'hidden' : 'visible' };
 
-  max-height: 2.5rem;
+  margin: ${props => props.collapsed ? '0' : '0.25rem'} 0;
+  padding: 0;
+  
+  max-height: ${props => props.collapsed ? '0' : 'auto'};
+
   overflow: hidden;
-  text-overflow: ellipsis;
 
   font-family: ${props => props.theme.fonts.standard};
   font-size: ${props => props.theme.fontSize.m};
@@ -39,14 +46,37 @@ const CardDescription = styled.p`
   color: gray;
 `;
 
+const CardToggle = styled.div`
+  margin: 0.375rem auto;
+  padding: 0;
+
+  height: 1rem;
+  width: 1rem;
+
+  background-image: ${props => props.collapsed ? 
+    props.theme.icons.expand : props.theme.icons.collapse
+  };
+  background-size: cover;
+
+`;
+
 const Card = (props) => {
+  const [collapsed, setCollapsed] = useState(true);
+
+  const collapse = () => setCollapsed(!collapsed);
+
   const theme = useContext(ThemeContext);
   const { name, description, tags } = props.exercise;
   return (
-    <StyledCard theme={theme}>
-      <CardTitle>{name}</CardTitle>
-      <CardDescription>{description}</CardDescription>
-      <TagsRow tags={tags} />
+    <StyledCard theme={theme} collapsed={collapsed}>
+      <div className="card-grid">
+        <CardTitle>{name}</CardTitle>
+        <CardToggle collapsed={collapsed} onClick={() => collapse()} />
+      </div>
+      <CardDescription collapsed={collapsed}>
+        {description}
+      </CardDescription>
+      <TagsRow tags={tags} collapsed={collapsed}/>
     </StyledCard>
   );
 };
