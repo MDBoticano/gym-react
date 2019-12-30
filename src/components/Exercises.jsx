@@ -12,10 +12,11 @@ import { SearchProvider } from './SearchContext';
 import styled, { ThemeContext } from 'styled-components';
 
 // Debounce delay in miliseconds
-const DEBOUNCE_TIME = 900;
-const debouncedFilter = debounce((
-  data, queryValue, queryables, setActiveData
-) => filterData(data, queryValue, queryables, setActiveData), DEBOUNCE_TIME);
+const DEBOUNCE_TIME = 500;
+const DEBOUNCE_OPTIONS = {};
+const debouncedFilter = debounce((...args) => filterData(...args),
+  DEBOUNCE_TIME, DEBOUNCE_OPTIONS
+);
 
 const Exercises = () => {
   const exercises = DummyExercises;
