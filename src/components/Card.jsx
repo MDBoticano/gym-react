@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 
 import TagsRow from './TagsRow';
@@ -25,12 +25,13 @@ const CardTitle = styled.p`
 `;
 
 const CardDescription = styled.p`
-  margin: 0;
-  margin-top: 5px;
+  visibility: ${props => props.collapsed ? 'hidden' : 'visible' };
 
-  max-height: 2.5rem;
+  margin: ${props => props.collapsed ? '0' : '0.25rem'} 0;
+
   overflow: hidden;
-  text-overflow: ellipsis;
+  max-height: ${props => props.collapsed ? '0' : 'auto'};
+
 
   font-family: ${props => props.theme.fonts.standard};
   font-size: ${props => props.theme.fontSize.m};
@@ -40,13 +41,19 @@ const CardDescription = styled.p`
 `;
 
 const Card = (props) => {
+  const [collapsed, setCollapsed] = useState(true);
+
+  const collapse = () => setCollapsed(!collapsed);
+
   const theme = useContext(ThemeContext);
   const { name, description, tags } = props.exercise;
   return (
-    <StyledCard theme={theme}>
+    <StyledCard theme={theme} collapsed={collapsed} onClick={() => collapse()}>
       <CardTitle>{name}</CardTitle>
-      <CardDescription>{description}</CardDescription>
-      <TagsRow tags={tags} />
+      <CardDescription collapsed={collapsed}>
+        {description}
+      </CardDescription>
+      <TagsRow tags={tags} collapsed={collapsed}/>
     </StyledCard>
   );
 };

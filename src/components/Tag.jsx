@@ -3,12 +3,15 @@ import styled, { ThemeContext } from 'styled-components';
 import SearchContext from './SearchContext';
 
 const Button = styled.button`
-  padding: 0.25rem 0.5rem;
+  height: 1.75rem;
+  
+  margin: 0.25rem 0 0;
+  padding: 0 0.5rem;
 
   border: solid 1px hsl(0, 0%, 59%);
 
   border-radius: 0.25rem;
-  
+
   font-size: ${props => props.theme.fontSize.s};
   line-height: 1.25rem;
 
