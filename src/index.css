@@ -1,6 +1,8 @@
 body {
   margin: 0;
   padding: 0;
+
+  background-color: rgb(37, 41, 58); /* temp background */
 }
 
 .App {
@@ -13,8 +15,6 @@ body {
   margin: 0;
   margin-left: auto;
   margin-right: auto;
-
-  border: solid 1px black;
 
   background-color: rgb(197, 197, 197);
 }

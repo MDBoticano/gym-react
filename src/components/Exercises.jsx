@@ -10,6 +10,7 @@ import { filterData } from '../utilities/search-utilities';
 
 import { SearchProvider } from './SearchContext';
 import styled, { ThemeContext } from 'styled-components';
+import { CreateExercises } from './CreateExercises';
 
 // Debounce delay in miliseconds
 const DEBOUNCE_TIME = 500;
@@ -19,7 +20,7 @@ const debouncedFilter = debounce((...args) => filterData(...args),
 );
 
 const Exercises = () => {
-  const exercises = DummyExercises;
+  const [exercises, setExercises] = useState(DummyExercises);
   const [activeExercises, setActiveExercises] = useState([]);
   const [queryText, setQueryText] = useState('');
   const [queryables] = useState({
@@ -31,6 +32,15 @@ const Exercises = () => {
   useEffect(() => {
     debouncedFilter(exercises, queryText, queryables, setActiveExercises);
   }, [exercises, queryText, queryables]);
+
+  const addExercise = (exercise) => {
+    const tempId = exercises.length + 1;
+    exercise.id = tempId;
+
+    const newExercises = [...exercises, exercise];
+    console.log('New exercises:', newExercises);
+    setExercises(newExercises);
+  }
 
   const cardsList = (allExercises) => {
     const loadingCopy = "Retrieving exercises...";
@@ -68,6 +78,7 @@ const Exercises = () => {
         <StyledList className="ExercisesList">
           {cardsList(activeExercises)}
         </StyledList>
+        <CreateExercises addExercise={addExercise} />
       </StyledExercises>
     </SearchProvider>
   );
