@@ -14,6 +14,11 @@ const StyledCard = styled.div`
   &:hover {
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
   }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5rem;
+  }
 `;
 
 const CardTitle = styled.p`
@@ -28,16 +33,31 @@ const CardDescription = styled.p`
   visibility: ${props => props.collapsed ? 'hidden' : 'visible' };
 
   margin: ${props => props.collapsed ? '0' : '0.25rem'} 0;
-
-  overflow: hidden;
+  padding: 0;
+  
   max-height: ${props => props.collapsed ? '0' : 'auto'};
 
+  overflow: hidden;
 
   font-family: ${props => props.theme.fonts.standard};
   font-size: ${props => props.theme.fontSize.m};
   line-height: 1.25rem;
 
   color: gray;
+`;
+
+const CardToggle = styled.div`
+  margin: 0.375rem auto;
+  padding: 0;
+
+  height: 1rem;
+  width: 1rem;
+
+  background-image: ${props => props.collapsed ? 
+    props.theme.icons.expand : props.theme.icons.collapse
+  };
+  background-size: cover;
+
 `;
 
 const Card = (props) => {
@@ -48,8 +68,11 @@ const Card = (props) => {
   const theme = useContext(ThemeContext);
   const { name, description, tags } = props.exercise;
   return (
-    <StyledCard theme={theme} collapsed={collapsed} onClick={() => collapse()}>
-      <CardTitle>{name}</CardTitle>
+    <StyledCard theme={theme} collapsed={collapsed}>
+      <div className="card-grid">
+        <CardTitle>{name}</CardTitle>
+        <CardToggle collapsed={collapsed} onClick={() => collapse()} />
+      </div>
       <CardDescription collapsed={collapsed}>
         {description}
       </CardDescription>

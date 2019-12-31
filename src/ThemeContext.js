@@ -19,6 +19,10 @@ const theme = {
     light: 300,
     regular: 400,
     bold: 700
+  },
+  icons: {
+    expand: `url('images/Expand.svg')`,
+    collapse: `url('images/Collapse.svg')`
   }
 }
 
