@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 
 import {
+  StyledLabel,
+  StyledInput,
+  StyledTextArea,
+  StyledSubmitForm,
+  StyledCancelForm,
+  StyledFormEntry,
+  StyledFormControls,
   StyledForm,
   StyledFormContainer,
   StyledCallToAction,
@@ -14,14 +21,12 @@ const CallToAction = ({ callback }) => {
   );
 }
 
-export const CreateExercises = ({ addExercise }) => {
-  const [hidden, setHidden] = useState(false);
+const initialFormState = { name: "", description: "", tags: [] };
 
-  const [formInputs, setFormInputs] = useState({
-    name: "",
-    description: "",
-    tags: []
-  });
+export const CreateExercises = ({ addExercise }) => {
+  const [hidden, setHidden] = useState(true);
+
+  const [formInputs, setFormInputs] = useState(initialFormState);
 
   const handleFormChange = (fieldChanged, event) => {
     const newValue = event.target.value;
@@ -35,6 +40,11 @@ export const CreateExercises = ({ addExercise }) => {
 
   const toggleHidden = () => setHidden(!hidden);
 
+  const closeForm = () => {
+    toggleHidden();
+    setFormInputs(initialFormState);
+  }
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     addExercise(formInputs);
@@ -45,24 +55,35 @@ export const CreateExercises = ({ addExercise }) => {
 
   return (
     <StyledFormContainer>
-      <StyledForm onSubmit={handleFormSubmit}>
-        <label>
-          Name:
-          <input 
+      <StyledForm>
+        <StyledFormEntry>
+          <StyledLabel htmlFor="name">Name:</StyledLabel>
+          <StyledInput 
+            name="name"
             type="text"
             value={formInputs.name}
             onChange={(event) => handleFormChange('name', event)}
           />
-        </label>
-        <label>
-          Description:
-          <input 
-            type="text"
+        </StyledFormEntry>
+
+        <StyledFormEntry>
+          <StyledLabel htmlFor="description">Description:</StyledLabel>
+          <StyledTextArea
+            name="description"
+            type="textarea"
             value={formInputs.description}
             onChange={(event) => handleFormChange('description', event)}
           />
-        </label>
-        <input type="submit" value="Submit" />
+        </StyledFormEntry>   
+       
+        <StyledFormControls>
+          <StyledCancelForm onClick={() => closeForm()}>
+            cancel
+          </StyledCancelForm>
+          <StyledSubmitForm type="submit" onClick={handleFormSubmit}>
+            Submit
+          </StyledSubmitForm>
+        </StyledFormControls>
       </StyledForm>
     </StyledFormContainer>
   );

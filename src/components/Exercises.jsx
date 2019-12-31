@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import ExercisesSearch from './ExercisesSearch';
+import { CreateExercises } from './CreateExercises';
 import Card from './Card';
+import { displayMessage } from './Messages';
+
 
 import DummyExercises from '../data/DummyExercises';
 
@@ -10,7 +13,7 @@ import { filterData } from '../utilities/search-utilities';
 
 import { SearchProvider } from './SearchContext';
 import styled, { ThemeContext } from 'styled-components';
-import { CreateExercises } from './CreateExercises';
+
 
 // Debounce delay in miliseconds
 const DEBOUNCE_TIME = 500;
@@ -20,6 +23,10 @@ const debouncedFilter = debounce((...args) => filterData(...args),
 );
 
 const Exercises = () => {
+  const [message, setMessage] = useState({ 
+    message: "", 
+    messageType: "" 
+  });
   const [exercises, setExercises] = useState(DummyExercises);
   const [activeExercises, setActiveExercises] = useState([]);
   const [queryText, setQueryText] = useState('');
@@ -33,12 +40,27 @@ const Exercises = () => {
     debouncedFilter(exercises, queryText, queryables, setActiveExercises);
   }, [exercises, queryText, queryables]);
 
+  const displayMessageTemporarily = (message, messageType, time = 3000) => {
+    setMessage({ message: message, messageType: messageType});
+
+    setTimeout(() => {
+      setMessage({ message: "", messageType: ""})
+    }, time);
+  }
+
   const addExercise = (exercise) => {
     const tempId = exercises.length + 1;
     exercise.id = tempId;
 
+    if (exercise.name === "") {
+      displayMessageTemporarily( "Your exercise needs a name!", "error");
+      return;
+    }
+
     const newExercises = [...exercises, exercise];
-    console.log('New exercises:', newExercises);
+    displayMessageTemporarily(`Added ${exercise.name}`, "success");
+
+
     setExercises(newExercises);
   }
 
@@ -74,6 +96,7 @@ const Exercises = () => {
         <StyledHeader>
           <p className="page-title">Exercises</p>
           <ExercisesSearch query={queryText} setQuery={setQueryText} />
+          {displayMessage(message.message, message.messageType)}
         </StyledHeader>
         <StyledList className="ExercisesList">
           {cardsList(activeExercises)}
@@ -85,7 +108,7 @@ const Exercises = () => {
 };
 
 const StyledExercises = styled.div`
-  max-height: 100vh;
+  height: 100vh;
 
   margin: 0;
   padding: 0;
@@ -119,7 +142,7 @@ const StyledHeader = styled.header`
 
 const StyledList = styled.div`
   margin: 0;
-  margin-bottom: 4.5rem;
+  margin-bottom: 4rem; /* height of add exercise button */
   padding: 0 0.5rem;
 
   overflow: auto;
