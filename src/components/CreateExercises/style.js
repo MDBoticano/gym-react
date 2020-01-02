@@ -62,23 +62,44 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledLabel = styled.label`
-  font-size: ${props => props.theme.fontSize.m};
+  margin-bottom: 0.125rem;
+  font-size: ${props => props.theme.fontSize.l};
 `
 
 export const StyledInput = styled.input`
+  outline: none;
+
+  padding: 0.5rem 0.5rem 0.25rem;
+
   font-size: ${props => props.theme.fontSize.m};
+  line-height: 1.25rem;
+
+  border: none;
+  border-bottom: solid 2px hsl(0, 0%, 79%);
+  border-radius: 0.25rem 0.25rem 0 0;
+  background-color: hsl(0, 0%, 89%);
 `;
 
 export const StyledTextArea = styled.textarea`
+  height: 7rem;
+  box-sizing: border-box;
+  resize: none;
+  outline: none;
+
+  padding: 0.5rem 0.5rem 0;
+
   font-size: ${props => props.theme.fontSize.m};
   line-height: 1.25rem;
-  height: 5rem;
-  resize: none;
+
+  border: none;
+  border-bottom: solid 2px hsl(0, 0%, 79%);
+  border-radius: 0.25rem 0.25rem 0 0;
+  background-color: hsl(0, 0%, 89%);
 `;
 
 export const StyledFormEntry = styled.div`
   margin: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -90,7 +111,7 @@ export const StyledFormControls = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.25rem;
+  grid-gap: 0.5rem;
 `;
 
 export const StyledFormContainer = styled.div`
@@ -111,3 +132,31 @@ export const StyledFormContainer = styled.div`
 
   background-color: hsla(0, 0%, 20%, 50%);
 `;
+
+export const StyledTagDefault = styled.button`
+  appearance: none;
+  outline: none;
+
+  height: 2rem;
+  
+  box-sizing: none;
+
+  margin: 0.25rem 0.5rem 0.25rem 0;
+  padding: 0.25rem 0.5rem;
+  
+
+  border: solid 1px grey;
+  border-radius: 0.25rem;
+
+  font-size: ${props => props.theme.fontSize.m};
+
+
+`;
+
+export const StyledTagActive = styled(StyledTagDefault)`
+  border: solid 1px rgba(0,0,0,0);
+
+  color: white;
+  background-color: blue;
+`;
+

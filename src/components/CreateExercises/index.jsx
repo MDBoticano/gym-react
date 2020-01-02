@@ -11,6 +11,8 @@ import {
   StyledForm,
   StyledFormContainer,
   StyledCallToAction,
+  StyledTagDefault,
+  StyledTagActive,
 } from './style';
 
 import { DummyTags } from '../../data/DummyTags';
@@ -26,7 +28,7 @@ const CallToAction = ({ callback }) => {
 const initialFormState = { name: "", description: "", tags: [] };
 
 export const CreateExercises = ({ addExercise }) => {
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(false);
 
   const [formInputs, setFormInputs] = useState({...initialFormState});
 
@@ -48,10 +50,27 @@ export const CreateExercises = ({ addExercise }) => {
     setFormInputs(newFormInputs);
   }
 
+  
+
   const closeForm = (event) => {
     event.preventDefault();
     toggleHidden();
     resetForm();
+  }
+
+  const closeFormModal = (event) => {
+    const target = event.target;
+    console.log(event.type);
+
+    // Close method 1: click outside the modal on the container (background)
+    if (event.type === "click" && target.className.includes("modal-overlay")) {
+      closeForm(event);
+    }
+    // Close method 2: pressing escape
+    // TODO: doesn't work until the form is focused
+    if (event.type === "keydown" && event.keyCode === 27) {
+      closeForm(event);
+    }
   }
 
   const handleFormSubmit = (event) => {
@@ -81,18 +100,15 @@ export const CreateExercises = ({ addExercise }) => {
       const tagComponents = tagsStrings.map((tag) => {
         const isSelected = formInputs.tags.includes(tag);
 
-        let callback;
-        if (isSelected) {
-          callback = removeTagFromState;
-        } else {
-          callback = addTagToState;
-        }
-
-        return (
-          <button onClick={() => callback(tag)} key={tag}>
+        const tagButton = isSelected ? 
+        <StyledTagActive onClick={() => removeTagFromState(tag)} key={tag}>
             {tag}
-          </button>
-        );
+        </StyledTagActive> :
+        <StyledTagDefault onClick={() => addTagToState(tag)} key={tag}>
+            {tag}
+        </StyledTagDefault>
+
+        return tagButton;
       });
 
       return tagComponents;
@@ -108,10 +124,13 @@ export const CreateExercises = ({ addExercise }) => {
   if (hidden) { return <CallToAction callback={toggleHidden} /> }
 
   return (
-    <StyledFormContainer>
+    <StyledFormContainer className="modal-overlay" tabIndex="0"
+      onClick={(event) => closeFormModal(event)}
+      onKeyDown={(event) => closeFormModal(event)}
+    >
       <StyledForm>
         <StyledFormEntry>
-          <StyledLabel htmlFor="name">Name:</StyledLabel>
+          <StyledLabel htmlFor="name">Name</StyledLabel>
           <StyledInput 
             name="name"
             type="text"
@@ -121,7 +140,7 @@ export const CreateExercises = ({ addExercise }) => {
         </StyledFormEntry>
 
         <StyledFormEntry>
-          <StyledLabel htmlFor="description">Description:</StyledLabel>
+          <StyledLabel htmlFor="description">Description</StyledLabel>
           <StyledTextArea
             name="description"
             type="textarea"
@@ -131,6 +150,7 @@ export const CreateExercises = ({ addExercise }) => {
         </StyledFormEntry>
 
         <StyledFormEntry>
+          <StyledLabel htmlFor="tags">Tags</StyledLabel>
           <AddTags formInputs={formInputs} />
         </StyledFormEntry>
        
