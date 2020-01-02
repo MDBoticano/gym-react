@@ -13,6 +13,8 @@ import {
   StyledCallToAction,
 } from './style';
 
+import { DummyTags } from '../../data/DummyTags';
+
 const CallToAction = ({ callback }) => {
   return (
     <StyledCallToAction onClick={() => callback()}>
@@ -26,7 +28,7 @@ const initialFormState = { name: "", description: "", tags: [] };
 export const CreateExercises = ({ addExercise }) => {
   const [hidden, setHidden] = useState(true);
 
-  const [formInputs, setFormInputs] = useState(initialFormState);
+  const [formInputs, setFormInputs] = useState({...initialFormState});
 
   const handleFormChange = (fieldChanged, event) => {
     const newValue = event.target.value;
@@ -40,18 +42,69 @@ export const CreateExercises = ({ addExercise }) => {
 
   const toggleHidden = () => setHidden(!hidden);
 
+  const resetForm = () => {
+    const newFormInputs = {...initialFormState};
+    newFormInputs.tags = [];
+    setFormInputs(newFormInputs);
+  }
+
   const closeForm = (event) => {
     event.preventDefault();
     toggleHidden();
-    setFormInputs(initialFormState);
+    resetForm();
   }
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     addExercise(formInputs);
     toggleHidden();
+    resetForm();
   };
 
+  /* Tags Adding Handler */
+  const AddTags = ({ formInputs }) => {
+    const allTags = DummyTags; 
+
+    const addTagToState = (tag) => {
+      const newInputs = {...formInputs};
+      newInputs.tags.push(tag);
+      setFormInputs(newInputs);
+    }
+
+    const removeTagFromState = (tagToRemove) => {
+      const newInputs = {...formInputs};
+      newInputs.tags = newInputs.tags.filter(tag => tag !== tagToRemove);
+      setFormInputs(newInputs);
+    }
+
+    const makeTagComponents = (tagsStrings) => {
+      const tagComponents = tagsStrings.map((tag) => {
+        const isSelected = formInputs.tags.includes(tag);
+
+        let callback;
+        if (isSelected) {
+          callback = removeTagFromState;
+        } else {
+          callback = addTagToState;
+        }
+
+        return (
+          <button onClick={() => callback(tag)} key={tag}>
+            {tag}
+          </button>
+        );
+      });
+
+      return tagComponents;
+    }
+    
+    return (
+      <div className="AddTags">
+        {makeTagComponents(allTags)}
+      </div>
+    );
+  }
+  
   if (hidden) { return <CallToAction callback={toggleHidden} /> }
 
   return (
@@ -75,7 +128,11 @@ export const CreateExercises = ({ addExercise }) => {
             value={formInputs.description}
             onChange={(event) => handleFormChange('description', event)}
           />
-        </StyledFormEntry>   
+        </StyledFormEntry>
+
+        <StyledFormEntry>
+          <AddTags formInputs={formInputs} />
+        </StyledFormEntry>
        
         <StyledFormControls>
           <StyledCancelForm onClick={(event) => closeForm(event)}>
