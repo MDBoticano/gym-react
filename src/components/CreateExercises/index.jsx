@@ -40,7 +40,8 @@ export const CreateExercises = ({ addExercise }) => {
 
   const toggleHidden = () => setHidden(!hidden);
 
-  const closeForm = () => {
+  const closeForm = (event) => {
+    event.preventDefault();
     toggleHidden();
     setFormInputs(initialFormState);
   }
@@ -77,10 +78,13 @@ export const CreateExercises = ({ addExercise }) => {
         </StyledFormEntry>   
        
         <StyledFormControls>
-          <StyledCancelForm onClick={() => closeForm()}>
+          <StyledCancelForm onClick={(event) => closeForm(event)}>
             cancel
           </StyledCancelForm>
-          <StyledSubmitForm type="submit" onClick={handleFormSubmit}>
+          <StyledSubmitForm
+            type="submit"
+            onClick={(event) => handleFormSubmit(event)}
+          >
             Submit
           </StyledSubmitForm>
         </StyledFormControls>

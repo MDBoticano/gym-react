@@ -73,6 +73,7 @@ export const StyledTextArea = styled.textarea`
   font-size: ${props => props.theme.fontSize.m};
   line-height: 1.25rem;
   height: 5rem;
+  resize: none;
 `;
 
 export const StyledFormEntry = styled.div`
