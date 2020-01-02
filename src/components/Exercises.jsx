@@ -57,7 +57,7 @@ const Exercises = () => {
       return;
     }
 
-    const newExercises = [...exercises, exercise];
+    const newExercises = [exercise, ...exercises];
     displayMessageTemporarily(`Added ${exercise.name}`, "success");
 
 
