@@ -28,7 +28,7 @@ const CallToAction = ({ callback }) => {
 const initialFormState = { name: "", description: "", tags: [] };
 
 export const CreateExercises = ({ addExercise }) => {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   const [formInputs, setFormInputs] = useState({...initialFormState});
 

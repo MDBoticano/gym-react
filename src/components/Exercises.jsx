@@ -11,6 +11,8 @@ import DummyExercises from '../data/DummyExercises';
 import debounce from 'lodash.debounce'; //implement yourself later
 import { filterData } from '../utilities/search-utilities';
 
+import gymServices from '../services/gymServices';
+
 import { SearchProvider } from './SearchContext';
 import styled, { ThemeContext } from 'styled-components';
 
@@ -20,7 +22,7 @@ const DEBOUNCE_TIME = 500;
 const DEBOUNCE_OPTIONS = {};
 const debouncedFilter = debounce((...args) => filterData(...args),
   DEBOUNCE_TIME, DEBOUNCE_OPTIONS
-);
+);    
 
 const Exercises = () => {
   const [message, setMessage] = useState({ 
@@ -35,6 +37,20 @@ const Exercises = () => {
     description: false,
     tags: true,
   });
+
+  useEffect(() => {
+    const asyncGetExercises = async() => { 
+      const dbExercises = await gymServices.getExercises();
+      console.log(dbExercises);
+
+      // Fallback for when the backend has no data
+      dbExercises.length > 0
+      ? setExercises(dbExercises)
+      : setExercises(DummyExercises)
+    };
+
+    asyncGetExercises();
+  }, []);
 
   useEffect(() => {
     debouncedFilter(exercises, queryText, queryables, setActiveExercises);
@@ -69,7 +85,7 @@ const Exercises = () => {
     const noResultsCopy = "We couldn't find what you were looking for. Try refining your search."
 
     // Deal with empty cases: while loading & when a search returns nothing
-    if (allExercises.length === 0) {
+    if (!allExercises || allExercises.length === 0) {
       const makeEmptyResultMessage = (query) => {
         return query === '' ? loadingCopy : noResultsCopy;
       }
