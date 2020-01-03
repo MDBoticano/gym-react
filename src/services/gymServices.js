@@ -8,9 +8,21 @@ const getExercises = async () => {
   const exercises = request.data;
 
   // console.log("request data:", exercises);
+  const transformedExercises = exercises.map((exercise) => {
+    // Get only the string values of the tags
+    const updatedExercise = { ...exercise };
+    const tagObjects = updatedExercise.tags;
+    const tagStrings = tagObjects.map((tagObj) => {
+      return tagObj.name;
+    });
+    updatedExercise.tags = tagStrings;
+    return updatedExercise;
+  });
 
-  return exercises;
+  // return exercises;
   // return DummyExercises;
+  // console.log(transformedExercises);
+  return transformedExercises;
 }
 
 

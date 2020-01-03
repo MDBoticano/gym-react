@@ -60,7 +60,7 @@ export const CreateExercises = ({ addExercise }) => {
 
   const closeFormModal = (event) => {
     const target = event.target;
-    console.log(event.type);
+    // console.log(event.type);
 
     // Close method 1: click outside the modal on the container (background)
     if (event.type === "click" && target.className.includes("modal-overlay")) {

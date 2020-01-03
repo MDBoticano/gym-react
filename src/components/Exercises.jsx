@@ -41,7 +41,7 @@ const Exercises = () => {
   useEffect(() => {
     const asyncGetExercises = async() => { 
       const dbExercises = await gymServices.getExercises();
-      console.log(dbExercises);
+      // console.log(dbExercises);
 
       // Fallback for when the backend has no data
       dbExercises.length > 0
