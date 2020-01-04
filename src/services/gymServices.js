@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import DummyExercises from '../data/DummyExercises';
+import DummyExercises from '../data/DummyExercises';
 const baseUrl = 'http://localhost:3001/api/exercises';
 
 
@@ -33,5 +33,18 @@ const createExercise = async (newExercise) => {
   return request.data;
 }
 
+const deleteExercise = async (id) => {
+  await axios.delete(`${baseUrl}/${id}`);
+  console.log('Deleted entry at id', `${id}`);
 
-export default { getExercises, createExercise };
+  const remainingExercises = await getExercises();
+  if (remainingExercises.length === 0) {
+    console.log('No more server exercises, return dummy data');
+    return DummyExercises;
+  } else {
+    return remainingExercises;
+  }
+}
+
+
+export default { getExercises, createExercise, deleteExercise };
