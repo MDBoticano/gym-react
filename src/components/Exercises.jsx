@@ -65,8 +65,10 @@ const Exercises = () => {
   }
 
   const addExercise = (exercise) => {
-    const tempId = exercises.length + 1;
-    exercise.id = tempId;
+    if (!exercise.id) { 
+      const tempId = exercises.length + 1;
+      exercise.id = tempId;
+    }
 
     if (exercise.name === "") {
       displayMessageTemporarily( "Your exercise needs a name!", "error");

@@ -25,5 +25,13 @@ const getExercises = async () => {
   return transformedExercises;
 }
 
+const createExercise = async (newExercise) => {
+  console.log('Creating new exercise:', newExercise);
+  const request = await axios.post(baseUrl, newExercise);
+  console.log(request);
+  console.log(request.data);
+  return request.data;
+}
 
-export default { getExercises };
+
+export default { getExercises, createExercise };
