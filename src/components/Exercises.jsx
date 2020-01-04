@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import ExercisesSearch from './ExercisesSearch';
 import { CreateExercises } from './CreateExercises';
-import Card from './Card';
+import { Card } from './Card';
 import { displayMessage } from './Messages';
 
 
@@ -65,8 +65,10 @@ const Exercises = () => {
   }
 
   const addExercise = (exercise) => {
-    const tempId = exercises.length + 1;
-    exercise.id = tempId;
+    if (!exercise.id) { 
+      const tempId = exercises.length + 1;
+      exercise.id = tempId;
+    }
 
     if (exercise.name === "") {
       displayMessageTemporarily( "Your exercise needs a name!", "error");
@@ -78,6 +80,12 @@ const Exercises = () => {
 
 
     setExercises(newExercises);
+  }
+
+  const deleteExercise = async (exerciseId) => {
+    const updatedExercises = await gymServices.deleteExercise(exerciseId);
+    console.log(updatedExercises);
+    setExercises(updatedExercises);
   }
 
   const cardsList = (allExercises) => {
@@ -96,7 +104,11 @@ const Exercises = () => {
       );
     } else {
       const exerciseCards = allExercises.map((exercise) => (
-        <Card className="Card" exercise={exercise} key={exercise.id} />
+        <Card 
+          exercise={exercise} 
+          deleteExercise={deleteExercise}
+          key={exercise.id} 
+        />
       ));
 
       return exerciseCards;

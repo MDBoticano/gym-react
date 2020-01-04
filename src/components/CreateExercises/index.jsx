@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   StyledLabel,
@@ -15,7 +15,10 @@ import {
   StyledTagActive,
 } from './style';
 
-import { DummyTags } from '../../data/DummyTags';
+// import { DummyTags } from '../../data/DummyTags';
+
+import gymServices from '../../services/gymServices';
+import tagsServices from '../../services/tagsServices';
 
 const CallToAction = ({ callback }) => {
   return (
@@ -31,6 +34,22 @@ export const CreateExercises = ({ addExercise }) => {
   const [hidden, setHidden] = useState(true);
 
   const [formInputs, setFormInputs] = useState({...initialFormState});
+
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    const getAndSetTags = async () => {
+      const retrievedTags = await tagsServices.getTags();
+      // console.log('tags from backend:', retrievedTags);
+      setTags(retrievedTags);
+      // return retrievedTags;
+    }
+    // const retrievedTags = getTags();
+    // console.log(retrievedTags);
+    // setTags(retrievedTags);
+    getAndSetTags();
+  }, []);
+
 
   const handleFormChange = (fieldChanged, event) => {
     const newValue = event.target.value;
@@ -73,16 +92,58 @@ export const CreateExercises = ({ addExercise }) => {
     }
   }
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    addExercise(formInputs);
+
+    const convertFormInputsTags = (inputs) => {
+      const inputsTags = inputs.tags;
+      const stateTags = tags;
+      
+      const tagsObjs = inputsTags.map((tagName) => {
+        return stateTags.find((tag) => tag.name === tagName);
+      });
+      console.log(tagsObjs);
+
+      const tagsIDs = tagsObjs.map((obj) => obj.id);
+      console.log(tagsIDs);
+
+      const modifiedInputs = { ...inputs, tags: tagsIDs };
+      console.log(modifiedInputs);
+
+      return modifiedInputs;
+    };
+
+    const convertResponseTags = (response) => {
+      const responseTags = response.tags;
+      const stateTags = tags;
+
+      const tagsObjs = responseTags.map((tagID) => {
+        return stateTags.find((tag) => tag.id === tagID);
+      });
+      const tagsNames = tagsObjs.map((obj) => obj.name);
+      const modifiedResponse = { ...response, tags: tagsNames };
+      
+      return modifiedResponse;
+    }
+
+    const exercise = convertFormInputsTags(formInputs);
+
+    const newExercise = await gymServices.createExercise(exercise);
+    console.log(newExercise);
+
+    const modifiedExercise = convertResponseTags(newExercise);
+
+    addExercise(modifiedExercise);
     toggleHidden();
     resetForm();
   };
 
   /* Tags Adding Handler */
   const AddTags = ({ formInputs }) => {
-    const allTags = DummyTags; 
+    const tagObjects = tags;
+    // console.log(tagObjects);
+    const allTags = tagObjects.map((tag) => tag.name);
+    // const allTags = DummyTags;
 
     const addTagToState = (tag) => {
       const newInputs = {...formInputs};
