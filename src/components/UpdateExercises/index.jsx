@@ -22,9 +22,9 @@ const ToggleForm = ({ callback }) => {
   return (<StyledEditButton onClick={() => callback()} />);
 }
 
-const initialFormState = { name: "", description: "", tags: [] };
 
 export const UpdateExercises = ({ exercise, updateExercisesList }) => {
+  const initialFormState = exercise;
   const [hidden, setHidden] = useState(true);
 
   const [formInputs, setFormInputs] = useState({...initialFormState});
@@ -58,7 +58,6 @@ export const UpdateExercises = ({ exercise, updateExercisesList }) => {
 
   const resetForm = () => {
     const newFormInputs = {...initialFormState};
-    newFormInputs.tags = [];
     setFormInputs(newFormInputs);
   }
 

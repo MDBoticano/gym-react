@@ -1,7 +1,10 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-const theme = { 
+const theme = {
+  maxWidth: {
+    standard: "414px"
+  },
   fonts: {
     standard: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif" ,
     monospace: "Monaco, Consolas, 'Lucida Console', monospace"

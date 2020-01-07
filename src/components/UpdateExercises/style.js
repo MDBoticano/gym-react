@@ -1,27 +1,5 @@
 import styled from 'styled-components';
 
-export const StyledCallToAction = styled.button`
-  appearance: none;
-
-  margin: 0;
-  padding: 0;
-
-  height: 4rem;
-
-  font-family: ${props => props.theme.fonts.standard};
-  font-size: ${props => props.theme.fontSize.l};
-
-  color: blue;
-  background-color: white;
-
-  width: 414px;
-
-  position: fixed;
-  bottom: 0;
-
-  z-index: 100;
-`;
-
 const StyledFormButton = styled.button`
   height: 2.5rem;
   width: 100%;
@@ -48,11 +26,9 @@ export const StyledCancelForm = styled(StyledFormButton)`
 `;
 
 export const StyledForm = styled.form`
-  margin: 1rem;
+  margin: auto;
   padding: 3rem;
-
-  width: 100%;
-
+  ${'' /* width: ${props => props.theme.maxWidth.standard}; */}
 
   font-family: ${props => props.theme.fonts.standard};
 
@@ -115,16 +91,22 @@ export const StyledFormControls = styled.div`
 `;
 
 export const StyledFormContainer = styled.div`
+  box-sizing: border-box;
+
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   
   height: 100vh;
-  width: inherit;
+  width: ${props => props.theme.maxWidth.standard};
+  
+  /* center the modal */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
 
-  position: fixed;
-  bottom: 0;
-
-  z-index: 100;
+  /* higher than Add Exercise */
+  z-index: 1000; 
 
   display: flex;
   justify-content: center;
