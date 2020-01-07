@@ -14,7 +14,7 @@ export const StyledCallToAction = styled.button`
   color: blue;
   background-color: white;
 
-  width: 414px;
+  width: inherit;
 
   position: fixed;
   bottom: 0;
