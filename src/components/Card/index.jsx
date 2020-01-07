@@ -19,7 +19,7 @@ export const Card = (props) => {
   const collapse = () => setCollapsed(!collapsed);
 
   const theme = useContext(ThemeContext);
-  const { exercise, deleteExercise} = props;
+  const { exercise, deleteExercise, updateExercisesList} = props;
   const { id, name, description, tags } = exercise;
   return (
     <StyledCard theme={theme} collapsed={collapsed}>
@@ -32,7 +32,10 @@ export const Card = (props) => {
       </CardDescription>
       <CardActions>
         <TagsRow tags={tags} collapsed={collapsed}/>
-        <UpdateExercises exercise={exercise} />
+        <UpdateExercises 
+          exercise={exercise}
+          updateExercisesList={updateExercisesList}
+        />
         <DeleteButton onClick={() => deleteExercise(id)} />
       </CardActions>
     </StyledCard>

@@ -86,6 +86,17 @@ export const Exercises = () => {
     setExercises(newExercises);
   }
 
+  const updateExercisesList = (updatedExercise) => {
+    const updatedList = exercises.map((exercise) => {
+      if(exercise.id === updatedExercise.id) {
+        return updatedExercise;
+      } else {
+        return exercise;
+      }
+    });
+    setExercises(updatedList);
+  }
+
   const deleteExercise = async (exerciseId) => {
     const updatedExercises = await gymServices.deleteExercise(exerciseId);
     console.log(updatedExercises);
@@ -111,6 +122,7 @@ export const Exercises = () => {
         <Card 
           exercise={exercise} 
           deleteExercise={deleteExercise}
+          updateExercisesList={updateExercisesList}
           key={exercise.id} 
         />
       ));

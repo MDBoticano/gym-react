@@ -24,7 +24,7 @@ const ToggleForm = ({ callback }) => {
 
 const initialFormState = { name: "", description: "", tags: [] };
 
-export const UpdateExercises = ({ exercise }) => {
+export const UpdateExercises = ({ exercise, updateExercisesList }) => {
   const [hidden, setHidden] = useState(true);
 
   const [formInputs, setFormInputs] = useState({...initialFormState});
@@ -125,7 +125,7 @@ export const UpdateExercises = ({ exercise }) => {
     // TODO Update app state with modified exercise
     const modifiedExercise = convertResponseTags(updatedExercise);
     console.log(modifiedExercise);
-    // addExercise(modifiedExercise);
+    updateExercisesList(modifiedExercise);
 
     toggleHidden();
     resetForm();
