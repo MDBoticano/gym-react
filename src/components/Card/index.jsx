@@ -32,8 +32,8 @@ export const Card = (props) => {
       </CardDescription>
       <CardActions>
         <TagsRow tags={tags} collapsed={collapsed}/>
-        <DeleteButton onClick={() => deleteExercise(id)} />
         <UpdateExercises exercise={exercise} />
+        <DeleteButton onClick={() => deleteExercise(id)} />
       </CardActions>
     </StyledCard>
   );

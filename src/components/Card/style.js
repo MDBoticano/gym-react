@@ -62,7 +62,8 @@ export const CardActions = styled.div`
   padding: 0;
 
   display: grid;
-  grid-template-columns: 1fr 1.5rem;
+  grid-template-columns: 1fr 1.5rem 1.5rem;
+  grid-gap: 0.5rem;
 `;
 
 export const DeleteButton = styled.div`

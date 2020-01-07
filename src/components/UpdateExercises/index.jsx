@@ -12,17 +12,14 @@ import {
   StyledFormContainer,
   StyledTagDefault,
   StyledTagActive,
+  StyledEditButton
 } from './style';
 
 import gymServices from '../../services/gymServices';
 import tagsServices from '../../services/tagsServices';
 
 const ToggleForm = ({ callback }) => {
-  return (
-    <button onClick={() => callback()}>
-      Update exercise
-    </button>
-  );
+  return (<StyledEditButton onClick={() => callback()} />);
 }
 
 const initialFormState = { name: "", description: "", tags: [] };

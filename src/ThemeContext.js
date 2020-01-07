@@ -23,7 +23,8 @@ const theme = {
   icons: {
     expand: `url('images/Expand.svg')`,
     collapse: `url('images/Collapse.svg')`,
-    trash: `url('images/Trash.svg')`
+    trash: `url('images/Trash.svg')`,
+    edit: `url('images/Edit.svg')`
   }
 }
 

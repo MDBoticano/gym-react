@@ -160,3 +160,17 @@ export const StyledTagActive = styled(StyledTagDefault)`
   background-color: blue;
 `;
 
+
+export const StyledEditButton = styled.div`
+  appearance: none;
+  margin: 0.25rem;
+
+  border: none;
+
+  background: ${props => props.theme.icons.edit} center no-repeat;
+  background-size: contain;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
