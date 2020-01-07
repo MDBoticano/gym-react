@@ -7,9 +7,7 @@ const getExercises = async () => {
   const request = await axios.get(baseUrl);
   const exercises = request.data;
 
-  // console.log("request data:", exercises);
   const transformedExercises = exercises.map((exercise) => {
-    // Get only the string values of the tags
     const updatedExercise = { ...exercise };
     const tagObjects = updatedExercise.tags;
     const tagStrings = tagObjects.map((tagObj) => {
@@ -18,12 +16,8 @@ const getExercises = async () => {
     updatedExercise.tags = tagStrings;
     return updatedExercise;
   });
-
-  // return exercises;
-  // return DummyExercises;
-  // console.log(transformedExercises);
   return transformedExercises;
-}
+};
 
 const createExercise = async (newExercise) => {
   console.log('Creating new exercise:', newExercise);
@@ -31,7 +25,7 @@ const createExercise = async (newExercise) => {
   console.log(request);
   console.log(request.data);
   return request.data;
-}
+};
 
 const deleteExercise = async (id) => {
   await axios.delete(`${baseUrl}/${id}`);
@@ -44,7 +38,13 @@ const deleteExercise = async (id) => {
   } else {
     return remainingExercises;
   }
-}
+};
 
+const updateExercise = async (updatedExercise, id) => {
+  console.log(`Updating exercise ${id}:`, updatedExercise);
 
-export default { getExercises, createExercise, deleteExercise };
+  const request = await axios.put(`${baseUrl}/${id}`, updatedExercise);
+  return request.data;
+};
+
+export default { getExercises, createExercise, deleteExercise, updateExercise };
