@@ -11,6 +11,7 @@ import {
 } from './style';
 
 import { TagsRow } from '../TagsRow';
+import { UpdateExercises } from '../UpdateExercises';
 
 export const Card = (props) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -18,8 +19,8 @@ export const Card = (props) => {
   const collapse = () => setCollapsed(!collapsed);
 
   const theme = useContext(ThemeContext);
-  const { id, name, description, tags } = props.exercise;
-  const deleteExercise = props.deleteExercise;
+  const { exercise, deleteExercise} = props;
+  const { id, name, description, tags } = exercise;
   return (
     <StyledCard theme={theme} collapsed={collapsed}>
       <div className="card-grid">
@@ -32,6 +33,7 @@ export const Card = (props) => {
       <CardActions>
         <TagsRow tags={tags} collapsed={collapsed}/>
         <DeleteButton onClick={() => deleteExercise(id)} />
+        <UpdateExercises exercise={exercise} />
       </CardActions>
     </StyledCard>
   );
