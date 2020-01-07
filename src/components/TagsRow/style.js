@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
-import SearchContext from './SearchContext';
+import styled from 'styled-components';
 
-const Button = styled.button`
+export const StyledButton = styled.button`
   height: 1.75rem;
   
   margin: 0.25rem 0 0;
@@ -30,14 +28,7 @@ const Button = styled.button`
   }
 `;
 
-const Tag = ({ label }) => {
-  const theme = useContext(ThemeContext);
-  const { setQuery } = useContext(SearchContext);
-  return (
-    <Button className="Tag" theme={theme} onClick={() => setQuery(label)}>
-      {label}
-    </Button>
-  );
-};
-
-export default Tag;
+export const StyledRow = styled.div`
+  height: ${props => props.collapsed ? '2rem' : 'auto'};
+  overflow: ${props => props.collapsed ? 'hidden' : 'hidden'};
+`;

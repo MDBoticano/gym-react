@@ -1,3 +1,7 @@
+:root {
+  --max-width: 414px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +10,7 @@ body {
 }
 
 .App {
-  max-width: 414px;
+  width: var(--max-width);
   height: 100vh;
 
   display: flex;

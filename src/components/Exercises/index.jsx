@@ -1,21 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
-
-import ExercisesSearch from './ExercisesSearch';
-import { CreateExercises } from './CreateExercises';
-import { Card } from './Card';
-import { displayMessage } from './Messages';
-
-
-import DummyExercises from '../data/DummyExercises';
+import { ThemeContext } from 'styled-components';
+import { SearchProvider } from '../SearchContext';
 
 import debounce from 'lodash.debounce'; //implement yourself later
-import { filterData } from '../utilities/search-utilities';
+import { filterData } from '../../utilities/search-utilities';
 
-import gymServices from '../services/gymServices';
+import gymServices from '../../services/gymServices';
 
-import { SearchProvider } from './SearchContext';
-import styled, { ThemeContext } from 'styled-components';
+import { ExercisesSearch } from '../ExercisesSearch';
+import { CreateExercises } from '../CreateExercises';
+import { Card } from '../Card';
+import { displayMessage } from '../Messages';
 
+import DummyExercises from '../../data/DummyExercises';
+
+import { 
+  StyledExercises,
+  StyledHeader, 
+  StyledList, 
+  StyledEmptyResult 
+} from './style';
 
 // Debounce delay in miliseconds
 const DEBOUNCE_TIME = 500;
@@ -24,7 +28,7 @@ const debouncedFilter = debounce((...args) => filterData(...args),
   DEBOUNCE_TIME, DEBOUNCE_OPTIONS
 );    
 
-const Exercises = () => {
+export const Exercises = () => {
   const [message, setMessage] = useState({ 
     message: "", 
     messageType: "" 
@@ -134,58 +138,3 @@ const Exercises = () => {
     </SearchProvider>
   );
 };
-
-const StyledExercises = styled.div`
-  height: 100vh;
-
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledHeader = styled.header`
-  margin: 0;
-  padding-top: 1.5rem;
-
-  background-color: white;
-
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-
-  /* so cards are below the header despite sibling */
-  z-index: 100; 
-
-  .page-title {
-    margin: 0;
-    padding: 0;
-
-    padding-left: 1rem;
-
-    font-family: ${props => props.theme.fonts.standard};
-    font-size: ${props => props.theme.fontSize.xxl};
-    line-height: 2.5rem;
-  }
-`;
-
-const StyledList = styled.div`
-  margin: 0;
-  margin-bottom: 4rem; /* height of add exercise button */
-  padding: 0 0.5rem;
-
-  overflow: auto;
-`;
-
-const StyledEmptyResult = styled.div`
-  margin: 0.5rem 0;
-  padding: 1rem;
-
-  color: hsl(0, 0%, 29%);
-
-  font-family: ${props => props.theme.fonts.standard};
-  font-size: ${props => props.theme.fontSize.l};
-
-  text-align: center;
-`;
-
-export default Exercises;

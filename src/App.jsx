@@ -1,7 +1,6 @@
 import React from 'react';
 
-// import Navigation from './components/Navigation';
-import Exercises from './components/Exercises';
+import { Exercises } from './components/Exercises';
 
 import ThemeContext from './ThemeContext';
 

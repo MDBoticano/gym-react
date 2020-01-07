@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
+import styled from 'styled-components';
 
-import styled, { ThemeContext } from 'styled-components';
-
-const StyledSearch = styled.div`
+export const StyledSearch = styled.div`
   margin: 0;
   padding: .75rem 1rem;
 
   background-color: white;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   width: 100%;
   height: 2rem;
   margin: 0;
@@ -34,20 +32,3 @@ const StyledInput = styled.input`
     background-color: white;
   }
 `;
-
-const ExercisesSearch = ({ query, setQuery }) => {
-  const theme = useContext(ThemeContext);
-
-  return (
-    <StyledSearch className="ExercisesSearch" theme={theme}>
-       <StyledInput
-        type="text"
-        value={query}
-        placeholder={"Search"}
-        onChange={(event) => setQuery(event.target.value)}
-      />
-    </StyledSearch>
-  );
-};
-
-export default ExercisesSearch;

@@ -10,7 +10,7 @@ import {
   DeleteButton
 } from './style';
 
-import TagsRow from '../TagsRow';
+import { TagsRow } from '../TagsRow';
 
 export const Card = (props) => {
   const [collapsed, setCollapsed] = useState(true);
