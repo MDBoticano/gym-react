@@ -119,7 +119,7 @@ export const StyledFormContainer = styled.div`
   padding: 0;
   
   height: 100vh;
-  width: 414px;
+  width: inherit;
 
   position: fixed;
   bottom: 0;
