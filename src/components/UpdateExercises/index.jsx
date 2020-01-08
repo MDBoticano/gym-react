@@ -25,7 +25,7 @@ const ToggleForm = ({ callback }) => {
 
 export const UpdateExercises = ({ exercise, updateExercisesList }) => {
   const initialFormState = exercise;
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(false);
 
   const [formInputs, setFormInputs] = useState({...initialFormState});
 
@@ -177,48 +177,52 @@ export const UpdateExercises = ({ exercise, updateExercisesList }) => {
   if (hidden) { return <ToggleForm callback={toggleHidden} /> }
 
   return (
-    <StyledFormContainer className="modal-overlay" tabIndex="0"
-      onClick={(event) => closeFormModal(event)}
-      onKeyDown={(event) => closeFormModal(event)}
-    >
-      <StyledForm>
-        <StyledFormEntry>
-          <StyledLabel htmlFor="name">Name</StyledLabel>
-          <StyledInput 
-            name="name"
-            type="text"
-            value={formInputs.name}
-            onChange={(event) => handleFormChange('name', event)}
-          />
-        </StyledFormEntry>
+    <>
+      <ToggleForm callback={toggleHidden} />
 
-        <StyledFormEntry>
-          <StyledLabel htmlFor="description">Description</StyledLabel>
-          <StyledTextArea
-            name="description"
-            type="textarea"
-            value={formInputs.description}
-            onChange={(event) => handleFormChange('description', event)}
-          />
-        </StyledFormEntry>
+      <StyledFormContainer className="modal-overlay" tabIndex="0"
+        onClick={(event) => closeFormModal(event)}
+        onKeyDown={(event) => closeFormModal(event)}
+      >
+        <StyledForm>
+          <StyledFormEntry>
+            <StyledLabel htmlFor="name">Name</StyledLabel>
+            <StyledInput 
+              name="name"
+              type="text"
+              value={formInputs.name}
+              onChange={(event) => handleFormChange('name', event)}
+            />
+          </StyledFormEntry>
 
-        <StyledFormEntry>
-          <StyledLabel htmlFor="tags">Tags</StyledLabel>
-          <AddTags formInputs={formInputs} />
-        </StyledFormEntry>
-       
-        <StyledFormControls>
-          <StyledCancelForm onClick={(event) => closeForm(event)}>
-            cancel
-          </StyledCancelForm>
-          <StyledSubmitForm
-            type="submit"
-            onClick={(event) => handleFormSubmit(event)}
-          >
-            Submit
-          </StyledSubmitForm>
-        </StyledFormControls>
-      </StyledForm>
-    </StyledFormContainer>
+          <StyledFormEntry>
+            <StyledLabel htmlFor="description">Description</StyledLabel>
+            <StyledTextArea
+              name="description"
+              type="textarea"
+              value={formInputs.description}
+              onChange={(event) => handleFormChange('description', event)}
+            />
+          </StyledFormEntry>
+
+          <StyledFormEntry>
+            <StyledLabel htmlFor="tags">Tags</StyledLabel>
+            <AddTags formInputs={formInputs} />
+          </StyledFormEntry>
+        
+          <StyledFormControls>
+            <StyledCancelForm onClick={(event) => closeForm(event)}>
+              cancel
+            </StyledCancelForm>
+            <StyledSubmitForm
+              type="submit"
+              onClick={(event) => handleFormSubmit(event)}
+            >
+              Submit
+            </StyledSubmitForm>
+          </StyledFormControls>
+        </StyledForm>
+      </StyledFormContainer>
+    </>
   );
 };
