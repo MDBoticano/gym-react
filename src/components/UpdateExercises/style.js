@@ -7,7 +7,7 @@ const StyledFormButton = styled.button`
   border: none;
 
   border-radius: 0.5rem;
-
+  font-family: ${props => props.theme.fonts.standard};
   font-size: ${props => props.theme.fontSize.m};
 `;
 
@@ -26,15 +26,20 @@ export const StyledCancelForm = styled(StyledFormButton)`
 `;
 
 export const StyledForm = styled.form`
-  margin: auto;
-  padding: 3rem;
-  ${'' /* width: ${props => props.theme.maxWidth.standard}; */}
+  margin: 0 0.5rem;
+  padding: 1.5rem 1rem;
+
+  width: 100%;
 
   font-family: ${props => props.theme.fonts.standard};
 
   background-color: white;
 
   border-radius: 0.5rem;
+
+  @media only screen and (min-width: 480px) {
+    padding: 3rem;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -47,6 +52,7 @@ export const StyledInput = styled.input`
 
   padding: 0.5rem 0.5rem 0.25rem;
 
+  font-family: ${props => props.theme.fonts.standard};
   font-size: ${props => props.theme.fontSize.m};
   line-height: 1.25rem;
 
@@ -94,10 +100,18 @@ export const StyledFormContainer = styled.div`
   box-sizing: border-box;
 
   margin: 0;
-  padding: 1rem;
+  padding: 0;
   
   height: 100vh;
-  width: ${props => props.theme.maxWidth.standard};
+  width: 100%;
+
+  @media only screen and (min-width: 480px) {
+    max-width: 480px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    max-width: 640px;
+  }
   
   /* center the modal */
   position: absolute;
@@ -119,20 +133,23 @@ export const StyledTagDefault = styled.button`
   appearance: none;
   outline: none;
 
-  height: 2rem;
-  
   box-sizing: none;
 
+  height: 2rem;
+
   margin: 0.25rem 0.5rem 0.25rem 0;
+  padding: 0.125rem 0.25rem;
   padding: 0.25rem 0.5rem;
-  
 
   border: solid 1px grey;
   border-radius: 0.25rem;
 
-  font-size: ${props => props.theme.fontSize.m};
+  font-family: ${props => props.theme.fonts.standard};
+  font-size: ${props => props.theme.fontSize.s};
 
-
+  @media only screen and (min-width: 480px) {
+    font-size: ${props => props.theme.fontSize.m};
+  };
 `;
 
 export const StyledTagActive = styled(StyledTagDefault)`

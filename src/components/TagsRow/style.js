@@ -10,6 +10,7 @@ export const StyledButton = styled.button`
 
   border-radius: 0.25rem;
 
+  font-family: ${props => props.theme.fonts.standard};
   font-size: ${props => props.theme.fontSize.s};
   line-height: 1.25rem;
 
