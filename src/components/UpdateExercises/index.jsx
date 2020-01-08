@@ -25,7 +25,7 @@ const ToggleForm = ({ callback }) => {
 
 export const UpdateExercises = ({ exercise, updateExercisesList }) => {
   const initialFormState = exercise;
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   const [formInputs, setFormInputs] = useState({...initialFormState});
 
