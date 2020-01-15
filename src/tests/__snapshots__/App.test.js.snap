@@ -1,14 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App is app 1`] = `
+.c2 {
+  margin: 0;
+  padding: .75rem 1rem;
+  background-color: white;
+}
+
+.c3 {
+  width: 100%;
+  height: 2rem;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+  color: hsl(0,0%,20%);
+  background-color: hsl(0,0%,95%);
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Helvetica Neue',Arial,sans-serif;
+  font-size: 1.000rem;
+  line-height: 1.25rem;
+}
+
+.c3:focus {
+  outline: none;
+  color: hsl(0,0%,20%);
+  background-color: white;
+}
+
+.c6 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  height: 4rem;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Helvetica Neue',Arial,sans-serif;
+  font-size: 1.250rem;
+  color: blue;
+  background-color: white;
+  width: inherit;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+}
+
+.c0 {
+  height: 100vh;
+  width: inherit;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  margin: 0;
+  padding-top: 1.5rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.c1 .page-title {
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Helvetica Neue',Arial,sans-serif;
+  font-size: 2.000rem;
+  line-height: 2.5rem;
+}
+
+.c4 {
+  margin: 0;
+  margin-bottom: 4rem;
+  padding: 0 0.5rem;
+  overflow: auto;
+}
+
+.c5 {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  color: hsl(0,0%,29%);
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Helvetica Neue',Arial,sans-serif;
+  font-size: 1.250rem;
+  text-align: center;
+}
+
 <div
   className="App"
 >
   <div
-    className="sc-gPEVay eHieyz"
+    className="c0"
   >
     <header
-      className="sc-iRbamj dZnHBM"
+      className="c1"
     >
       <p
         className="page-title"
@@ -16,10 +106,10 @@ exports[`App is app 1`] = `
         Exercises
       </p>
       <div
-        className="sc-bdVaJa kMyqSV ExercisesSearch"
+        className="c2 ExercisesSearch"
       >
         <input
-          className="sc-bwzfXH eAKyFD"
+          className="c3"
           onChange={[Function]}
           placeholder="Search"
           type="text"
@@ -28,16 +118,16 @@ exports[`App is app 1`] = `
       </div>
     </header>
     <div
-      className="sc-jlyJG fflAYx ExercisesList"
+      className="c4 ExercisesList"
     >
       <div
-        className="sc-gipzik ilydas"
+        className="c5"
       >
         Retrieving exercises...
       </div>
     </div>
     <button
-      className="sc-htpNat uapYE"
+      className="c6"
       onClick={[Function]}
     >
       Create an Exercise
